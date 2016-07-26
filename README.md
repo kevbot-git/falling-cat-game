@@ -1,10 +1,3 @@
 # falling-cat-game
-To be added
-~~~~~~~~~~~~
 
-testing testing
-~~~~~~~~~~~~
-
-testing
-
-stuff
+An Android/iOS game about a falling cat.
