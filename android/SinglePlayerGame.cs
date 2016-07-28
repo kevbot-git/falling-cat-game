@@ -81,6 +81,7 @@ namespace FallingCatGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+			// Testing..
 
             base.Draw(gameTime);
         }
