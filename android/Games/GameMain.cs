@@ -21,7 +21,7 @@ namespace FallingCatGame.Games
             graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
-            graphics.SupportedOrientations = DisplayOrientation.Portrait | DisplayOrientation.PortraitDown;
+            graphics.SupportedOrientations = DisplayOrientation.Portrait;
         }
 
         /// <summary>

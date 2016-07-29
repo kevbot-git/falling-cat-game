@@ -11,7 +11,7 @@ namespace FallingCatGame.Games
         , Theme = "@style/Theme.Splash"
         , AlwaysRetainTaskState = true
         , LaunchMode = Android.Content.PM.LaunchMode.SingleInstance
-        , ScreenOrientation = ScreenOrientation.SensorLandscape
+        , ScreenOrientation = ScreenOrientation.Portrait
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class GameActivity : Microsoft.Xna.Framework.AndroidGameActivity
     {
