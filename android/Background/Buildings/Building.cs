@@ -24,9 +24,14 @@ namespace FallingCatGame.Background.Buildings
             set { position = value; }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public Texture2D Texture
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            get { return texture; }
+        }
+
+        public void Draw(SpriteBatch spriteBatch, SpriteEffects effect)
+        {
+            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1f, effect, 0f);
         }
 
         public void Update(GameTime gameTime, int speed)

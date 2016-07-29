@@ -5,9 +5,9 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Building_Brick.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Building_Brick_Billboard.png</File>
     <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Cloud_Small.png</File>
     <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Cloud_Medium.png</File>
     <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Cloud_Large.png</File>
+    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Building_Brick_Billboard.png</File>
   </SourceFiles>
 </SourceFileCollection>
