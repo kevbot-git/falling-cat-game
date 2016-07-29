@@ -28,6 +28,11 @@ namespace FallingCatGame.Background
             set { position = value; }
         }
 
+        public Texture2D Texture
+        {
+            set { texture = value; }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, null, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);

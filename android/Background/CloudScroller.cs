@@ -33,6 +33,7 @@ namespace FallingCatGame.Background
             screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
+            loadContent();
             initializeClouds();
         }
 
@@ -65,10 +66,15 @@ namespace FallingCatGame.Background
             return new Vector2(screenWidth, seed.Next(0, screenHeight / 2));
         }
 
+        private Texture2D getRandomTexture(Random seed)
+        {
+            Texture2D[] textures = new Texture2D[] { cloudSmall, cloudMedium, cloudLarge };
+            return textures[seed.Next(0, textures.Length)];
+        }
+
         private Cloud getRandomCloud(float scale, int speed, Color color, Random seed)
         {
-            Texture2D[] clouds = new Texture2D[] { cloudSmall, cloudMedium, cloudLarge };
-            Cloud cloud = new Cloud(content, scale, speed, color, clouds[new Random().Next(0, clouds.Length)]);
+            Cloud cloud = new Cloud(content, scale, speed, color, getRandomTexture(seed));
             cloud.Position = getRandomYPosition(seed);
             return cloud;
         }
@@ -84,6 +90,7 @@ namespace FallingCatGame.Background
                     if (cloud.Position.X < 0)
                     {
                         cloud.Position = getRandomYPosition(seed);
+                        cloud.Texture = getRandomTexture(seed);
                     }
 
                     cloud.Update(gameTime);

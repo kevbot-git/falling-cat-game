@@ -1,7 +1,7 @@
-FallingCatGame.Games.GameActivity, FallingCatGame;md554e734a926debf0ea93ad6e50b18040a.GameActivity
-FallingCatGame.Games.GameActivity, FallingCatGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md554e734a926debf0ea93ad6e50b18040a.GameActivity
-FallingCatGame.Games.GameActivity;md554e734a926debf0ea93ad6e50b18040a.GameActivity
-fallingcatgame.games.GameActivity;md554e734a926debf0ea93ad6e50b18040a.GameActivity
+FallingCatGame.Main.GameActivity, FallingCatGame;md5b3594ee105ac711f25663e33f5a2735b.GameActivity
+FallingCatGame.Main.GameActivity, FallingCatGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b3594ee105ac711f25663e33f5a2735b.GameActivity
+FallingCatGame.Main.GameActivity;md5b3594ee105ac711f25663e33f5a2735b.GameActivity
+fallingcatgame.main.GameActivity;md5b3594ee105ac711f25663e33f5a2735b.GameActivity
 Microsoft.Xna.Framework.AndroidGameActivity, MonoGame.Framework;md5741e60a80250ab7e7b6f039198ff6a46.AndroidGameActivity
 Microsoft.Xna.Framework.AndroidGameActivity, MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, PublicKeyToken=null;md5741e60a80250ab7e7b6f039198ff6a46.AndroidGameActivity
 Microsoft.Xna.Framework.AndroidGameActivity;md5741e60a80250ab7e7b6f039198ff6a46.AndroidGameActivity
