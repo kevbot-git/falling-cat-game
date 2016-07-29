@@ -4,15 +4,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FallingCatGame.Scrollers.Clouds
 {
-    public class CloudSmall : Cloud
+    public class CloudLarge : Cloud
     {
-        public CloudSmall(ContentManager content, float scale, int speed, Color color) : base(content, scale, speed, color)
+        public CloudLarge(ContentManager content, float scale, int speed, Color color) : base(content, scale, speed, color)
         {
         }
 
         public override void LoadTexture()
         {
-            texture = content.Load<Texture2D>("Cloud_Small");
+            texture = content.Load<Texture2D>("Cloud_Large");
         }
     }
 }

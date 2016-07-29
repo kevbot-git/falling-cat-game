@@ -9,12 +9,18 @@ namespace FallingCatGame.Scrollers.Clouds
         protected ContentManager content;
         protected Texture2D texture;
         protected Vector2 position;
+        protected float scale;
+        protected int speed;
+        protected Color color;
 
         public abstract void LoadTexture();
 
-        public Cloud(ContentManager content)
+        public Cloud(ContentManager content, float scale, int speed, Color color)
         {
             this.content = content;
+            this.scale = scale;
+            this.speed = speed;
+            this.color = color;
             LoadTexture();
         }
 
@@ -26,12 +32,12 @@ namespace FallingCatGame.Scrollers.Clouds
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.Draw(texture, position, null, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
         }
 
-        public void Update(int speed)
+        public void Update()
         {
-            position.X += speed;
+            position.X -= speed;
         }
     }
 }
