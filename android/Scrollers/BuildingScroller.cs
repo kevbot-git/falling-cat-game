@@ -44,12 +44,12 @@ namespace FallingCatGame.Scrollers
 
         private void initiatePositions()
         {
-            int cY = 0;
+            int cY = screenHeight;
 
             foreach (Building building in buildings)
             {
                 building.Position = new Vector2(0, cY);
-                cY += TEXTURE_HEIGHT;
+                cY -= TEXTURE_HEIGHT;
             }
 
             updatePositions();
@@ -69,10 +69,10 @@ namespace FallingCatGame.Scrollers
 
         public void Update(GameTime gameTime)
         {
-            if (last.Y > screenHeight)
+            if (last.Y < -TEXTURE_HEIGHT)
             {
                 Building stackBuilding = getRandomBuilding();
-                stackBuilding.Position = new Vector2(0, first.Y - TEXTURE_HEIGHT);
+                stackBuilding.Position = new Vector2(0, first.Y + TEXTURE_HEIGHT);
                 buildings.AddFirst(stackBuilding);
                 buildings.RemoveLast();
             }

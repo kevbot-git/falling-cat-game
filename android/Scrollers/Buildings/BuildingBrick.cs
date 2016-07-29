@@ -7,7 +7,6 @@ namespace FallingCatGame.Scrollers.Buildings
     {
         public BuildingBrick(ContentManager content) : base(content)
         {
-
         }
 
         public override void LoadTexture()

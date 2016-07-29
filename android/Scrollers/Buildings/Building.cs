@@ -31,7 +31,7 @@ namespace FallingCatGame.Scrollers.Buildings
 
         public void Update(int speed)
         {
-            position.Y += speed;
+            position.Y -= speed;
         }
     }
 }
