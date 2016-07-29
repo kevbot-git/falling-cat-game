@@ -58,8 +58,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity1.cs" />
-    <Compile Include="SinglePlayerGame.cs" />
+    <Compile Include="Scrollers\Buildings\BuildingBillboard.cs" />
+    <Compile Include="Scrollers\Buildings\BuildingBrick.cs" />
+    <Compile Include="Scrollers\BuildingScroller.cs" />
+    <Compile Include="Scrollers\CloudScroller.cs" />
+    <Compile Include="Games\GameActivity.cs" />
+    <Compile Include="Scrollers\Buildings\Building.cs" />
+    <Compile Include="Scrollers\Clouds\Cloud.cs" />
+    <Compile Include="Games\GameBase.cs" />
+    <Compile Include="Games\GameScreen.cs" />
+    <Compile Include="Games\GameLogic.cs" />
+    <Compile Include="Games\GameMain.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
