@@ -1,9 +1,8 @@
-﻿using FallingCatGame.Scrollers;
+﻿using FallingCatGame.Background;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
-namespace FallingCatGame.Games
+namespace FallingCatGame.Main
 {
     public class GameScreen : GameBase, GameLogic
     {

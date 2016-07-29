@@ -1,12 +1,12 @@
-﻿using FallingCatGame.Games;
-using FallingCatGame.Scrollers.Buildings;
+﻿using FallingCatGame.Main;
+using FallingCatGame.Background.Buildings;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace FallingCatGame.Scrollers
+namespace FallingCatGame.Background
 {
     public class BuildingScroller : GameLogic
     {

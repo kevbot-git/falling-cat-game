@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace FallingCatGame.Games
+namespace FallingCatGame.Main
 {
     /// <summary>
     /// This is the main type for your game.

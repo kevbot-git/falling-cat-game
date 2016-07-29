@@ -2,25 +2,19 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FallingCatGame.Scrollers.Clouds
+namespace FallingCatGame.Background.Buildings
 {
-    public abstract class Cloud
+    public abstract class Building
     {
         protected ContentManager content;
         protected Texture2D texture;
         protected Vector2 position;
-        protected float scale;
-        protected int speed;
-        protected Color color;
 
         public abstract void LoadTexture();
 
-        public Cloud(ContentManager content, float scale, int speed, Color color)
+        public Building(ContentManager content)
         {
             this.content = content;
-            this.scale = scale;
-            this.speed = speed;
-            this.color = color;
             LoadTexture();
         }
 
@@ -32,12 +26,12 @@ namespace FallingCatGame.Scrollers.Clouds
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, Color.White);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, int speed)
         {
-            position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 }

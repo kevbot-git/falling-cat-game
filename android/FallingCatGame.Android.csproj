@@ -58,22 +58,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scrollers\Buildings\BuildingBillboard.cs" />
-    <Compile Include="Scrollers\Buildings\BuildingBrick.cs" />
-    <Compile Include="Scrollers\BuildingScroller.cs" />
-    <Compile Include="Scrollers\CloudScroller.cs" />
-    <Compile Include="Games\GameActivity.cs" />
-    <Compile Include="Scrollers\Buildings\Building.cs" />
-    <Compile Include="Scrollers\Clouds\Cloud.cs" />
-    <Compile Include="Games\GameBase.cs" />
-    <Compile Include="Games\GameScreen.cs" />
-    <Compile Include="Games\GameLogic.cs" />
-    <Compile Include="Games\GameMain.cs" />
+    <Compile Include="Background\Buildings\BuildingBillboard.cs" />
+    <Compile Include="Background\Buildings\BuildingBrick.cs" />
+    <Compile Include="Background\BuildingScroller.cs" />
+    <Compile Include="Background\CloudScroller.cs" />
+    <Compile Include="Main\GameActivity.cs" />
+    <Compile Include="Background\Buildings\Building.cs" />
+    <Compile Include="Background\Cloud.cs" />
+    <Compile Include="Main\GameBase.cs" />
+    <Compile Include="Main\GameScreen.cs" />
+    <Compile Include="Main\GameLogic.cs" />
+    <Compile Include="Main\GameMain.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scrollers\Clouds\CloudLarge.cs" />
-    <Compile Include="Scrollers\Clouds\CloudMedium.cs" />
-    <Compile Include="Scrollers\Clouds\CloudSmall.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

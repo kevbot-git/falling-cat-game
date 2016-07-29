@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FallingCatGame.Scrollers.Buildings
+namespace FallingCatGame.Background.Buildings
 {
     public class BuildingBillboard : Building
     {

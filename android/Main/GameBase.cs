@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content;
 
-namespace FallingCatGame.Games
+namespace FallingCatGame.Main
 {
     public abstract class GameBase
     {

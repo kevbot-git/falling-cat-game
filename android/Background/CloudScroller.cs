@@ -1,12 +1,11 @@
 using System;
-using FallingCatGame.Games;
+using FallingCatGame.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
-using FallingCatGame.Scrollers.Clouds;
 
-namespace FallingCatGame.Scrollers
+namespace FallingCatGame.Background
 {
     public class CloudScroller : GameLogic
     {
@@ -18,6 +17,9 @@ namespace FallingCatGame.Scrollers
         private List<Cloud> thirdLayer;
         private int screenWidth;
         private int screenHeight;
+        private Texture2D cloudSmall;
+        private Texture2D cloudMedium;
+        private Texture2D cloudLarge;
 
         public CloudScroller(ContentManager content)
         {
@@ -34,6 +36,13 @@ namespace FallingCatGame.Scrollers
             initializeClouds();
         }
 
+        private void loadContent()
+        {
+            cloudSmall = content.Load<Texture2D>("Cloud_Small");
+            cloudMedium = content.Load<Texture2D>("Cloud_Medium");
+            cloudLarge = content.Load<Texture2D>("Cloud_Large");
+        }
+
         private void initializeClouds()
         {
             int nClouds = NUMBER_OF_CLOUDS / 3;
@@ -41,12 +50,9 @@ namespace FallingCatGame.Scrollers
 
             for (int i = 0; i < nClouds; i++)
             {
-                firstLayer.Add(getRandomCloud(1f, seed.Next(100, 200), Color.White));
-                firstLayer[i].Position = getRandomYPosition(seed);
-                secondLayer.Add(getRandomCloud(0.67f, seed.Next(50, 100), Color.LightGray));
-                secondLayer[i].Position = getRandomYPosition(seed);
-                thirdLayer.Add(getRandomCloud(0.34f, seed.Next(25, 50), Color.SlateGray));
-                thirdLayer[i].Position = getRandomYPosition(seed);
+                firstLayer.Add(getRandomCloud(1f, seed.Next(100, 200), Color.White, seed));
+                secondLayer.Add(getRandomCloud(0.67f, seed.Next(50, 100), Color.LightGray, seed));
+                thirdLayer.Add(getRandomCloud(0.34f, seed.Next(25, 50), Color.SlateGray, seed));
             }
 
             clouds.Add(thirdLayer);
@@ -59,10 +65,12 @@ namespace FallingCatGame.Scrollers
             return new Vector2(screenWidth, seed.Next(0, screenHeight / 2));
         }
 
-        private Cloud getRandomCloud(float scale, int speed, Color color)
+        private Cloud getRandomCloud(float scale, int speed, Color color, Random seed)
         {
-            Cloud[] clouds = new Cloud[] { new CloudSmall(content, scale, speed, color), new CloudMedium(content, scale, speed, color), new CloudLarge(content, scale, speed, color) };
-            return clouds[new Random().Next(0, clouds.Length)];
+            Texture2D[] clouds = new Texture2D[] { cloudSmall, cloudMedium, cloudLarge };
+            Cloud cloud = new Cloud(content, scale, speed, color, clouds[new Random().Next(0, clouds.Length)]);
+            cloud.Position = getRandomYPosition(seed);
+            return cloud;
         }
 
         public void Update(GameTime gameTime)

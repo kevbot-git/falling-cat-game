@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FallingCatGame.Games
+namespace FallingCatGame.Main
 {
     public interface GameLogic
     {
