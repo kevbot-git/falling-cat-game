@@ -26,7 +26,7 @@ namespace FallingCatGame.Scrollers
 
             buildings = new LinkedList<Building>();
 
-            speed = 5;
+            speed = 300;
 
             screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -79,7 +79,7 @@ namespace FallingCatGame.Scrollers
 
             foreach (Building building in buildings)
             {
-                building.Update(speed);
+                building.Update(gameTime, speed);
             }
 
             updatePositions();

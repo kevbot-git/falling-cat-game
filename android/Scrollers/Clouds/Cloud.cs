@@ -35,9 +35,9 @@ namespace FallingCatGame.Scrollers.Clouds
             spriteBatch.Draw(texture, position, null, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            position.X -= speed;
+            position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 }

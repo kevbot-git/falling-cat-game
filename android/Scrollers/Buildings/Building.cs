@@ -29,9 +29,9 @@ namespace FallingCatGame.Scrollers.Buildings
             spriteBatch.Draw(texture, position, Color.White);
         }
 
-        public void Update(int speed)
+        public void Update(GameTime gameTime, int speed)
         {
-            position.Y -= speed;
+            position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 }

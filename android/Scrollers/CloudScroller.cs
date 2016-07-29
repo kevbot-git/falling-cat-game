@@ -41,11 +41,11 @@ namespace FallingCatGame.Scrollers
 
             for (int i = 0; i < nClouds; i++)
             {
-                firstLayer.Add(getRandomCloud(1f, seed.Next(3, 6), Color.White));
+                firstLayer.Add(getRandomCloud(1f, seed.Next(100, 200), Color.White));
                 firstLayer[i].Position = getRandomYPosition(seed);
-                secondLayer.Add(getRandomCloud(0.67f, seed.Next(2, 4), Color.LightGray));
+                secondLayer.Add(getRandomCloud(0.67f, seed.Next(50, 100), Color.LightGray));
                 secondLayer[i].Position = getRandomYPosition(seed);
-                thirdLayer.Add(getRandomCloud(0.34f, seed.Next(1, 2), Color.SlateGray));
+                thirdLayer.Add(getRandomCloud(0.34f, seed.Next(25, 50), Color.SlateGray));
                 thirdLayer[i].Position = getRandomYPosition(seed);
             }
 
@@ -78,7 +78,7 @@ namespace FallingCatGame.Scrollers
                         cloud.Position = getRandomYPosition(seed);
                     }
 
-                    cloud.Update();
+                    cloud.Update(gameTime);
                 }
             }
         }
