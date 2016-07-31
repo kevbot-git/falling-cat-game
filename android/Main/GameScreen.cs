@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FallingCatGame.Main
 {
-    public class GameScreen : GameBase, GameLogic
+    public class GameScreen : GameBase, IGameLogic
     {
         private BuildingScroller buildingScroller;
         private CloudScroller cloudScroller;

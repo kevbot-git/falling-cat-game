@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FallingCatGame.Background
 {
-    public class CloudScroller : GameLogic
+    public class CloudScroller : IGameLogic
     {
         private const int NUMBER_OF_CLOUDS = 6;
         private ContentManager content;

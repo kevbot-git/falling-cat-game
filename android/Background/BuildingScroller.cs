@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FallingCatGame.Background
 {
-    public class BuildingScroller : GameLogic
+    public class BuildingScroller : IGameLogic
     {
         private const int TEXTURE_HEIGHT = 384;
         private LinkedList<Building> leftBuildings;

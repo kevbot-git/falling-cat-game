@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FallingCatGame.Main
 {
-    public interface GameLogic
+    public interface IGameLogic
     {
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
