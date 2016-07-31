@@ -1,3 +1,4 @@
+using Android.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,9 +10,13 @@ namespace FallingCatGame.Main
     /// </summary>
     public class GameMain : Game
     {
+        public static readonly string DEBUG_TAG = "CAT_GAME";
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameScreen gameScreen;
+
+        public Vector3 Accelerometer { get; internal set; }
 
         public GameMain()
         {
@@ -22,6 +27,8 @@ namespace FallingCatGame.Main
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
             graphics.SupportedOrientations = DisplayOrientation.Portrait;
+
+            Accelerometer = new Vector3();
         }
 
         /// <summary>
@@ -68,8 +75,11 @@ namespace FallingCatGame.Main
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                Exit();
-
+            {
+                // Write accel reading to debug log [TEMPORARY]
+                Log.Info(DEBUG_TAG, "Accel.X: " + Accelerometer.X + " Accel.Y: " + Accelerometer.Y + " Accel.Z: " + Accelerometer.Z);
+                // usually Exit() is called here;
+            }
             // TODO: Add your update logic here
 
             gameScreen.Update(gameTime);
