@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace FallingCatGame.Sprite
+namespace FallingCatGame.Drawing
 {
-    class AnimationSequence
+    public class AnimationSequence
     {
         public static readonly string DEFAULT = "default";
 

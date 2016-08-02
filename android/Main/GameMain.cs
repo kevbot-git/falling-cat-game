@@ -1,4 +1,5 @@
 using Android.Util;
+using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,6 +16,10 @@ namespace FallingCatGame.Main
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameScreen gameScreen;
+
+        // Testing sprites
+        private Sprite staticBuilding;
+        private AnimatedSprite animDude;
 
         public Vector3 Accelerometer { get; internal set; }
 
@@ -55,6 +60,10 @@ namespace FallingCatGame.Main
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // Testing sprites
+            //staticBuilding = new Sprite(Content.Load<Texture2D>("Building_Brick"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch);
+            animDude = new AnimatedSprite(Content.Load<Texture2D>("dude_colour"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch, 2, 2);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -84,6 +93,9 @@ namespace FallingCatGame.Main
 
             gameScreen.Update(gameTime);
 
+            // Testing sprites
+            animDude.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -98,8 +110,11 @@ namespace FallingCatGame.Main
             // TODO: Add your drawing code here
 			// Testing..
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, null);
             gameScreen.Draw(spriteBatch);
+            // Testing sprites
+            animDude.Render(gameTime);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

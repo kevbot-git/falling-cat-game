@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FallingCatGame.Sprite
+namespace FallingCatGame.Drawing
 {
-    class Sprite
+    public class Sprite
     {
-        public static float GLOBAL_SCALE = 1f;
+        public static float GLOBAL_SCALE = 32f;
 
         public Texture2D Texture { get; protected set; }
         public float Scale { get; set; }
@@ -32,6 +32,12 @@ namespace FallingCatGame.Sprite
             FlipHorizontal = false;
             FlipVertical = false;
         }
+
+        public Sprite(Texture2D texture, Vector2 position, Rectangle displayRect, Rectangle colliderRect, SpriteBatch spriteBatch)
+            : this(texture, GLOBAL_SCALE, position, 0f, displayRect, colliderRect, colliderRect.Center, spriteBatch) { }
+
+        public Sprite(Texture2D texture, Vector2 position, SpriteBatch spriteBatch)
+            : this(texture, position, texture.Bounds, texture.Bounds, spriteBatch) { }
 
         public virtual void Update(GameTime gameTime)
         {

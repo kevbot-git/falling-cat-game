@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace FallingCatGame.Sprite
+namespace FallingCatGame.Drawing
 {
-    class AnimatedSprite : Sprite
+    public class AnimatedSprite : Sprite
     {
-        public static double GLOBAL_ANIM_RATE = 0.25;
+        public static double GLOBAL_ANIM_RATE = 4;
 
         public List<Rectangle> FrameRects { get; protected set; }
         public AnimationSequence.Map Animations { get; protected set; }
@@ -19,21 +19,16 @@ namespace FallingCatGame.Sprite
         private double lastAnimTick;
         private double animTick;
 
-        public AnimatedSprite(Texture2D texture, float scale, Vector2 position, float rotation, Point origin, SpriteBatch spriteBatch, List<Rectangle> frameRects, Rectangle colliderRect, double fps)
-            : base(texture, scale, position, rotation, frameRects[0], colliderRect, origin, spriteBatch)
+        public AnimatedSprite(Texture2D texture, float scale, Vector2 position, float rotation, Point origin, SpriteBatch spriteBatch, int columns, int rows, Rectangle colliderRect, double fps)
+            : base(texture, scale, position, rotation, new Rectangle(), colliderRect, origin, spriteBatch)
         {
-            FrameRects = frameRects;
-            CurrentFrame = 0;
             Animations = new AnimationSequence.Map();
             CurrentAnim = AnimationSequence.DEFAULT;
             AnimatingNow = true;
             lastAnimTick = 0.0;
             animTick = 1 / fps;
-        }
 
-        public AnimatedSprite(Texture2D texture, float scale, Vector2 position, float rotation, Point origin, SpriteBatch spriteBatch, int columns, int rows, Rectangle colliderRect, double fps)
-            : this(texture, scale, position, rotation, origin, spriteBatch, new List<Rectangle>(), colliderRect, fps)
-        {
+            FrameRects = new List<Rectangle>();
             int frameWidth = Texture.Width / columns;
             int frameHeight = Texture.Height / rows;
             for(int y = 0; y < rows; y++)
@@ -44,7 +39,16 @@ namespace FallingCatGame.Sprite
                 }
             }
 
+            CurrentFrame = 0;
+            DisplayRect = FrameRects[CurrentFrame];
             //TODO: Add unit testing to make sure frames are evenly divided
+        }
+
+        public AnimatedSprite(Texture2D texture, Vector2 position, SpriteBatch spriteBatch, int columns, int rows)
+            : this(texture, GLOBAL_SCALE, position, 0f, Point.Zero, spriteBatch, columns, rows, texture.Bounds,GLOBAL_ANIM_RATE)
+        {
+            Origin = DisplayRect.Center;
+            ColliderRect = DisplayRect;
         }
 
         public override void Update(GameTime gameTime)
