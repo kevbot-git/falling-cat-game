@@ -5,7 +5,7 @@ namespace FallingCatGame.Drawing
 {
     public class Sprite
     {
-        public static float GLOBAL_SCALE = 32f;
+        public static float GLOBAL_SCALE = 12f;
 
         public Texture2D Texture { get; protected set; }
         public float Scale { get; set; }

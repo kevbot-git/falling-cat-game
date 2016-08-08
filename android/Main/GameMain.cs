@@ -63,6 +63,7 @@ namespace FallingCatGame.Main
             // Testing sprites
             //staticBuilding = new Sprite(Content.Load<Texture2D>("Building_Brick"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch);
             animDude = new AnimatedSprite(Content.Load<Texture2D>("dude_colour"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch, 2, 2);
+            animDude.AddAnimation(new AnimationSequence());
 
             // TODO: use this.Content to load your game content here
         }

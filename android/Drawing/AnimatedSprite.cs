@@ -2,60 +2,59 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Android.Util;
 
 namespace FallingCatGame.Drawing
 {
     public class AnimatedSprite : Sprite
     {
-        public static double GLOBAL_ANIM_RATE = 4;
-
         public List<Rectangle> FrameRects { get; protected set; }
-        public AnimationSequence.Map Animations { get; protected set; }
-        public bool AnimatingNow { get; set; }
 
-        private AnimationSequence currentAnim;
-        private string currentAnimKey;
-        private int currentFrame;
-        private double lastAnimTick;
-        private double animTick;
-
-        public AnimatedSprite(Texture2D texture, float scale, Vector2 position, float rotation, Point origin, SpriteBatch spriteBatch, int columns, int rows, Rectangle colliderRect, double fps)
+        public AnimatedSprite(Texture2D texture, float scale, Vector2 position, float rotation, Point origin, SpriteBatch spriteBatch, int columns, int rows, int totalFrames, Rectangle colliderRect, double fps)
             : base(texture, scale, position, rotation, new Rectangle(), colliderRect, origin, spriteBatch)
         {
-            Animations = new AnimationSequence.Map();
-            CurrentAnim = AnimationSequence.DEFAULT;
-            AnimatingNow = true;
-            lastAnimTick = 0.0;
-            animTick = 1 / fps;
-
             FrameRects = new List<Rectangle>();
             int frameWidth = Texture.Width / columns;
             int frameHeight = Texture.Height / rows;
-            for(int y = 0; y < rows; y++)
+            int maxFrames = columns * rows;
+
+            if(totalFrames < 1)
+                totalFrames = 1;
+            else if(totalFrames > maxFrames)
+                totalFrames = maxFrames;
+
+            int x, y = 0;
+
+            for (int f = 0; f < totalFrames; f++) // 0
             {
-                for(int x = 0; x < columns; x++)
-                {
-                    FrameRects.Add(new Rectangle(x * frameWidth, y * frameHeight, frameWidth, frameHeight));
-                }
+                x = f % columns;
+                
+                FrameRects.Add(new Rectangle(x * frameWidth, y * frameHeight, frameWidth, frameHeight));
+
+                if (x == columns - 1)
+                    y++;
             }
 
-            CurrentFrame = 0;
             DisplayRect = FrameRects[CurrentFrame];
             //TODO: Add unit testing to make sure frames are evenly divided
         }
 
-        public AnimatedSprite(Texture2D texture, Vector2 position, SpriteBatch spriteBatch, int columns, int rows)
-            : this(texture, GLOBAL_SCALE, position, 0f, Point.Zero, spriteBatch, columns, rows, texture.Bounds,GLOBAL_ANIM_RATE)
+        public AnimatedSprite(Texture2D texture, Vector2 position, SpriteBatch spriteBatch, int columns, int rows, int totalFrames)
+            : this(texture, GLOBAL_SCALE, position, 0f, Point.Zero, spriteBatch, columns, rows, totalFrames, texture.Bounds,GLOBAL_ANIM_RATE)
         {
             Origin = DisplayRect.Center;
             ColliderRect = DisplayRect;
         }
 
+        public AnimatedSprite(Texture2D texture, Vector2 position, SpriteBatch spriteBatch, int columns, int rows)
+            : this(texture, position, spriteBatch, columns, rows, columns * rows) { }
+
         public override void Update(GameTime gameTime)
         {
             if(gameTime.TotalGameTime.TotalSeconds - lastAnimTick > animTick && AnimatingNow)
             {
-                DisplayRect = FrameRects[CurrentFrame++];
+                currentAnim.CurrentPosition++;
+                DisplayRect = FrameRects[CurrentFrame];
                 lastAnimTick = gameTime.TotalGameTime.TotalSeconds;
             }
             base.Update(gameTime);
@@ -78,6 +77,7 @@ namespace FallingCatGame.Drawing
                 {
                     currentAnimKey = value;
                     currentAnim = Animations[currentAnimKey];
+                    Animations[currentAnimKey].Reset();
                 }
             }
         }
@@ -86,11 +86,7 @@ namespace FallingCatGame.Drawing
         {
             get
             {
-                return currentFrame;
-            }
-            set
-            {
-                currentFrame = Math.Abs(value) % FrameRects.Count;
+                return currentAnim.Frames[currentAnim.CurrentPosition];
             }
         }
     }
