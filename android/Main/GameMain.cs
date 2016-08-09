@@ -1,4 +1,5 @@
 using Android.Util;
+using FallingCatGame.Control;
 using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +20,8 @@ namespace FallingCatGame.Main
 
         // Testing sprites
         private Sprite staticBuilding;
-        private AnimatedSprite animDude;
+        //private AnimatedSprite animDude;
+        private PlayerControl playerControl;
 
         public Vector3 Accelerometer { get; internal set; }
 
@@ -61,9 +63,11 @@ namespace FallingCatGame.Main
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Testing sprites
-            //staticBuilding = new Sprite(Content.Load<Texture2D>("Building_Brick"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch);
-            animDude = new AnimatedSprite(Content.Load<Texture2D>("dude_colour"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch, 2, 2);
-            animDude.AddAnimation(new AnimationSequence());
+            staticBuilding = new Sprite(Content.Load<Texture2D>("Building_Brick"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch);
+
+            playerControl = new PlayerControl(staticBuilding, GraphicsDevice.Viewport.Bounds.Center.ToVector2(), 256f);
+            //animDude = new AnimatedSprite(Content.Load<Texture2D>("dude_colour"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch, 2, 2);
+            //animDude.AddAnimation(new AnimationSequence());
 
             // TODO: use this.Content to load your game content here
         }
@@ -95,7 +99,9 @@ namespace FallingCatGame.Main
             gameScreen.Update(gameTime);
 
             // Testing sprites
-            animDude.Update(gameTime);
+            //animDude.Update(gameTime);
+
+            playerControl.Update(Accelerometer);
 
             base.Update(gameTime);
         }
@@ -112,9 +118,9 @@ namespace FallingCatGame.Main
 			// Testing..
 
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, null);
-            gameScreen.Draw(spriteBatch);
+            //gameScreen.Draw(spriteBatch);
             // Testing sprites
-            animDude.Render(gameTime);
+            staticBuilding.Render(gameTime);
 
             spriteBatch.End();
 

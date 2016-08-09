@@ -62,7 +62,7 @@
     <Compile Include="Background\Buildings\BuildingBrick.cs" />
     <Compile Include="Background\BuildingScroller.cs" />
     <Compile Include="Background\CloudScroller.cs" />
-    <Compile Include="Drawing\AnimationManager.cs" />
+    <Compile Include="Control\PlayerControl.cs" />
     <Compile Include="Main\GameActivity.cs" />
     <Compile Include="Background\Buildings\Building.cs" />
     <Compile Include="Background\Cloud.cs" />
@@ -72,7 +72,6 @@
     <Compile Include="Main\GameMain.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Drawing\AnimatedSprite.cs" />
     <Compile Include="Drawing\Sprite.cs" />
   </ItemGroup>
   <ItemGroup>
