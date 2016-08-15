@@ -1,11 +1,10 @@
 ﻿namespace FallingCatGame.Main
 {
-	public enum GameStates
-	{
-		MainMenu,
-		Settings,
-		Playing,
-		Finished,
-	}
+    public enum GameStates
+    {
+        MainMenu,
+        Settings,
+        Playing,
+        Finished,
+    }
 }
-

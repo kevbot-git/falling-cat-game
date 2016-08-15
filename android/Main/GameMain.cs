@@ -19,8 +19,8 @@ namespace FallingCatGame.Main
 
         GameScreen gameScreen;
 
-		GameStates state;
-		MainMenu menu;
+        GameStates state;
+        MainMenu menu;
 
         public Vector3 Accelerometer { get; internal set; }
 
@@ -45,14 +45,14 @@ namespace FallingCatGame.Main
         /// </summary>
         protected override void Initialize()
         {
-			// Set which gestures are allowed for android users.
-			TouchPanel.EnabledGestures = GestureType.Tap | GestureType.Hold;
+            // Set which gestures are allowed for android users.
+            TouchPanel.EnabledGestures = GestureType.Tap | GestureType.Hold;
 
-			// Set the inital game state to the main menu.
-			state = GameStates.MainMenu;
+            // Set the inital game state to the main menu.
+            state = GameStates.MainMenu;
 
             gameScreen = new GameScreen(this);
-			menu = new MainMenu(Content);
+            menu = new MainMenu(Content);
 
             base.Initialize();
         }
@@ -92,23 +92,23 @@ namespace FallingCatGame.Main
                 // usually Exit() is called here;
             }
 
-			var touches = TouchPanel.GetState();
+            var touches = TouchPanel.GetState();
 
-			switch (state)
-			{
-				case GameStates.MainMenu:
-					Button b = menu.CheckCollision(touches);
-					if (b != null)
-					{
-						this.state = b.NextState;
-					}
+            switch (state)
+            {
+                case GameStates.MainMenu:
+                    Button b = menu.CheckCollision(touches);
+                    if (b != null)
+                    {
+                        this.state = b.NextState;
+                    }
 
-					menu.Update(gameTime);
-					break;
-				case GameStates.Playing:
-					gameScreen.Update(gameTime);
-					break;
-			}
+                    menu.Update(gameTime);
+                    break;
+                case GameStates.Playing:
+                    gameScreen.Update(gameTime);
+                    break;
+            }
 
             base.Update(gameTime);
         }
@@ -118,21 +118,22 @@ namespace FallingCatGame.Main
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
-		{
+        {
             spriteBatch.Begin();
 
-			GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			switch (state) {
-				case GameStates.MainMenu:
-					menu.Draw(spriteBatch);
-					break;
-				case GameStates.Playing:
-					gameScreen.Draw(spriteBatch);
-					break;
-			}
+            switch (state)
+            {
+                case GameStates.MainMenu:
+                    menu.Draw(spriteBatch);
+                    break;
+                case GameStates.Playing:
+                    gameScreen.Draw(spriteBatch);
+                    break;
+            }
 
-			spriteBatch.End();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

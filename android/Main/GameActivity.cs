@@ -38,7 +38,7 @@ namespace FallingCatGame.Main
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            sensorManager = (SensorManager) GetSystemService(SensorService);
+            sensorManager = (SensorManager)GetSystemService(SensorService);
             game = new GameMain();
             SetContentView((View)game.Services.GetService(typeof(View)));
             game.Run();

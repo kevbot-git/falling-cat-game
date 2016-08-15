@@ -21,9 +21,9 @@ namespace FallingCatGame.Main
         }
 
         public void Draw(SpriteBatch spriteBatch)
-		{
-			cloudScroller.Draw(spriteBatch);
-			buildingScroller.Draw(spriteBatch);
+        {
+            cloudScroller.Draw(spriteBatch);
+            buildingScroller.Draw(spriteBatch);
         }
 
         public void Update(GameTime gameTime)
