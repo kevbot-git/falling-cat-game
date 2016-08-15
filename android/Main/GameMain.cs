@@ -99,9 +99,7 @@ namespace FallingCatGame.Main
                 case GameStates.MainMenu:
                     Button b = menu.CheckCollision(touches);
                     if (b != null)
-                    {
                         this.state = b.NextState;
-                    }
 
                     menu.Update(gameTime);
                     break;
