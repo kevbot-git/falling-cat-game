@@ -9,12 +9,9 @@ namespace FallingCatGame.Main
         private BuildingScroller buildingScroller;
         private CloudScroller cloudScroller;
 
-        public GameScreen(GameMain game) : base(game)
-        {
-            loadAssets();
-        }
+        public GameScreen(GameMain game) : base(game) { }
 
-        private void loadAssets()
+        public void LoadAssets()
         {
             buildingScroller = new BuildingScroller(Content);
             cloudScroller = new CloudScroller(Content);

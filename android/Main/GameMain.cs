@@ -15,6 +15,7 @@ namespace FallingCatGame.Main
         public static readonly string DEBUG_TAG = "CAT_GAME";
 
         GraphicsDeviceManager graphics;
+        SceneManager sceneManager;
         SpriteBatch spriteBatch;
         GameScreen gameScreen;
 
@@ -59,6 +60,8 @@ namespace FallingCatGame.Main
         /// </summary>
         protected override void LoadContent()
         {
+            gameScreen.LoadAssets();
+            sceneManager = new SceneManager(GraphicsDevice); // Will control positioning and scaling
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
