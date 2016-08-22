@@ -2,6 +2,8 @@ using Android.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
+using FallingCatGame.Menus;
 
 namespace FallingCatGame.Main
 {
@@ -14,7 +16,11 @@ namespace FallingCatGame.Main
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
         GameScreen gameScreen;
+
+        GameStates state;
+        MainMenu menu;
 
         public Vector3 Accelerometer { get; internal set; }
 
@@ -39,9 +45,14 @@ namespace FallingCatGame.Main
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Set which gestures are allowed for android users.
+            TouchPanel.EnabledGestures = GestureType.Tap | GestureType.Hold;
+
+            // Set the inital game state to the main menu.
+            state = GameStates.MainMenu;
 
             gameScreen = new GameScreen(this);
+            menu = new MainMenu(Content);
 
             base.Initialize();
         }
@@ -80,9 +91,22 @@ namespace FallingCatGame.Main
                 Log.Info(DEBUG_TAG, "Accel.X: " + Accelerometer.X + " Accel.Y: " + Accelerometer.Y + " Accel.Z: " + Accelerometer.Z);
                 // usually Exit() is called here;
             }
-            // TODO: Add your update logic here
 
-            gameScreen.Update(gameTime);
+            var touches = TouchPanel.GetState();
+
+            switch (state)
+            {
+                case GameStates.MainMenu:
+                    Button b = menu.CheckCollision(touches);
+                    if (b != null)
+                        this.state = b.NextState;
+
+                    menu.Update(gameTime);
+                    break;
+                case GameStates.Playing:
+                    gameScreen.Update(gameTime);
+                    break;
+            }
 
             base.Update(gameTime);
         }
@@ -93,13 +117,20 @@ namespace FallingCatGame.Main
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-			// Testing..
+            switch (state)
+            {
+                case GameStates.MainMenu:
+                    menu.Draw(spriteBatch);
+                    break;
+                case GameStates.Playing:
+                    gameScreen.Draw(spriteBatch);
+                    break;
+            }
 
-            spriteBatch.Begin();
-            gameScreen.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
