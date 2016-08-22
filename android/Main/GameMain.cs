@@ -20,7 +20,7 @@ namespace FallingCatGame.Main
         GameScreen gameScreen;
 
         // Testing sprites
-        private Sprite staticBuilding;
+        private Sprite spriteTest;
         //private AnimatedSprite animDude;
         private PlayerControl playerControl;
 
@@ -66,9 +66,9 @@ namespace FallingCatGame.Main
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Testing sprites
-            staticBuilding = new Sprite(Content.Load<Texture2D>("Building_Brick"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch);
+            spriteTest = new Sprite(Content.Load<Texture2D>("cat_static"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch);
 
-            playerControl = new PlayerControl(staticBuilding, GraphicsDevice.Viewport.Bounds.Center.ToVector2(), 256f);
+            playerControl = new PlayerControl(spriteTest, GraphicsDevice.Viewport.Bounds.Center.X, 64 * sceneManager.Scale);
             //animDude = new AnimatedSprite(Content.Load<Texture2D>("dude_colour"), GraphicsDevice.Viewport.Bounds.Center.ToVector2(), spriteBatch, 2, 2);
             //animDude.AddAnimation(new AnimationSequence());
 
@@ -104,7 +104,7 @@ namespace FallingCatGame.Main
             // Testing sprites
             //animDude.Update(gameTime);
 
-            playerControl.Update(Accelerometer);
+            playerControl.Update(gameTime, Accelerometer);
 
             base.Update(gameTime);
         }
@@ -123,7 +123,7 @@ namespace FallingCatGame.Main
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, null);
             //gameScreen.Draw(spriteBatch);
             // Testing sprites
-            staticBuilding.Render(gameTime);
+            spriteTest.Render(gameTime);
 
             spriteBatch.End();
 

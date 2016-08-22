@@ -9,37 +9,69 @@ namespace FallingCatGame.Control
     class PlayerControl
     {
         private static readonly float ACCEL_THRESH = 2.0f;
+        private static readonly float ANIM_TIME = 0.8f;
 
-        public Sprite playerSprite { get; set; }
+        public Sprite playerSprite { get; private set; }
 
-        private Vector2 center;
-        private Vector2 left;
-        private Vector2 right;
+        private float centerX;
+        private float leftX;
+        private float rightX;
+        private Movement movement;
+        private Movement prevMovement;
+        GameTime lastChange;
 
-        public PlayerControl(Sprite playerSprite, Vector2 center, float offset)
+        public PlayerControl(Sprite playerSprite, float centerX, float offset)
         {
             this.playerSprite = playerSprite;
-            this.center = center;
-            left = center;
-            right = center;
-            left.X -= offset;
-            right.X += offset;
+            this.centerX = centerX;
+            leftX = centerX - offset;
+            rightX = centerX + offset;
+            movement = Movement.NONE;
+            prevMovement = Movement.NONE;
         }
 
-        public void Update(Vector3 accelerometer)
+        public void Update(GameTime gameTime, Vector3 accelerometer)
         {
-            if(accelerometer.X < -ACCEL_THRESH)
+            prevMovement = movement;
+
+            if (accelerometer.X < -ACCEL_THRESH)
             {
-                playerSprite.Position = right;
+                // Move right
+                movement = Movement.RIGHT;
             }
-            else if(accelerometer.X > ACCEL_THRESH)
+            else if (accelerometer.X > ACCEL_THRESH)
             {
-                playerSprite.Position = left;
+                // Move left
+                movement = Movement.LEFT;
             }
             else
             {
-                playerSprite.Position = center;
+                // Re center
+                movement = Movement.NONE;
             }
+
+            if (movement != prevMovement)
+            {
+                lastChange = gameTime;
+            }
+
+            switch(movement)
+            {
+                case Movement.LEFT:
+                    playerSprite.Position.X = leftX;
+                    break;
+                case Movement.RIGHT:
+
+                    break;
+                case Movement.NONE:
+
+                    break;
+            }
+        }
+
+        private enum Movement
+        {
+            LEFT = -1, NONE = 0, RIGHT = 1
         }
     }
 }
