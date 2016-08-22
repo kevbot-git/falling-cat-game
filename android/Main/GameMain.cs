@@ -119,7 +119,7 @@ namespace FallingCatGame.Main
         {
             spriteBatch.Begin();
 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+			GraphicsDevice.Clear(Color.CornflowerBlue);
 
             switch (state)
             {

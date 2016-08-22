@@ -7,12 +7,10 @@ namespace FallingCatGame.Main
 	public class MenuScreen : GameBase, IGameLogic
 	{
 		public MainMenu mainMenu;
-		private GameStates states;
 
-		public MenuScreen(GameStates states) : base(game)
+		public MenuScreen(GameMain game) : base(game)
 		{
-			this.states = states;
-			mainMenu = new MainMenu(Content, states);
+			mainMenu = new MainMenu(Content);
 		}
 
 		public void Update(GameTime gameTime)

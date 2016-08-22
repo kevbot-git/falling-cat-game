@@ -69,6 +69,10 @@
     <Compile Include="Main\GameScreen.cs" />
     <Compile Include="Main\GameLogic.cs" />
     <Compile Include="Main\GameMain.cs" />
+	<Compile Include="Main\MenuScreen.cs" />
+	<Compile Include="Main\GameStates.cs" />
+	<Compile Include="Menus\Button.cs" />
+	<Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
