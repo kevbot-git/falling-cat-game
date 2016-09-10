@@ -1,16 +1,17 @@
 ﻿using FallingCatGame.Menus;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FallingCatGame.Main
 {
-	public class MenuScreen : GameBase, IGameLogic
+	public class MenuScreen : IGameLogic
 	{
 		public MainMenu mainMenu;
 
-		public MenuScreen(GameMain game) : base(game)
+		public MenuScreen(ContentManager content)
 		{
-			mainMenu = new MainMenu(Content);
+			mainMenu = new MainMenu(content);
 		}
 
 		public void Update(GameTime gameTime)

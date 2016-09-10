@@ -1,128 +1,149 @@
-﻿using FallingCatGame.Main;
-using FallingCatGame.Background.Buildings;
+﻿using System;
+using System.Collections.Generic;
+using FallingCatGame.Main;
+using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 
 namespace FallingCatGame.Background
 {
     public class BuildingScroller : IGameLogic
     {
-        private const int TEXTURE_HEIGHT = 384;
-        private LinkedList<Building> leftBuildings;
-        private LinkedList<Building> rightBuildings;
-        private ContentManager content;
-        private Vector2 leftLast;
-        private Vector2 leftFirst;
-        private Vector2 rightFirst;
-        private Vector2 rightLast;
-        private int screenHeight;
-        private int screenWidth;
-        private int nBuildings;
-        private int speed;
+        private int _screenHeight;
+        private int _screenWidth;
 
-        public BuildingScroller(ContentManager content)
+        // Building properties.
+        private Texture2D _buildingTexture;
+        private float _scale;
+        private float _velocity;
+
+        // Scroller properties.
+        private int _nBuildings;
+        private Vector2 _leftLast;
+        private Vector2 _leftFirst;
+        private Vector2 _rightFirst;
+        private Vector2 _rightLast;
+        private LinkedList<GameObject> _leftBuildings;
+        private LinkedList<GameObject> _rightBuildings;
+
+        public BuildingScroller(ContentManager content, float scale)
         {
-            this.content = content;
+            // Drawing.
+            LoadContent(content);
+            _scale = scale;
 
-            leftBuildings = new LinkedList<Building>();
-            rightBuildings = new LinkedList<Building>();
+            _leftBuildings = new LinkedList<GameObject>();
+            _rightBuildings = new LinkedList<GameObject>();
 
-            speed = 300;
+            _velocity = 300;
 
-            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            _screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
-            nBuildings = screenHeight / TEXTURE_HEIGHT;
+            _nBuildings = (int)(_screenHeight / _buildingTexture.Height * scale);
 
-            for (int i = 0; i < nBuildings + 2; i++)
+            for (int i = 0; i < _nBuildings + 2; i++)
             {
-                Building building = new BuildingBrick(content);
-                leftBuildings.AddLast(building);
-                rightBuildings.AddLast(building);
+                // No position passed into constructor as position is later initialized.
+                GameObject building = new GameObject(_buildingTexture, _scale, Vector2.Zero, new Vector2(0, 1), _velocity);
+                _leftBuildings.AddLast(building);
+                _rightBuildings.AddLast(building);
             }
 
-            initiatePositions();
+            InitiatePositions();
         }
 
-        private void initiatePositions()
+        private void LoadContent(ContentManager content)
         {
-            int cY = screenHeight;
+            _buildingTexture = content.Load<Texture2D>("NYApartmentBuilding");
+        }
 
-            foreach (Building building in leftBuildings)
+        private void InitiatePositions()
+        {
+            int cY = _screenHeight;
+
+            foreach (GameObject building in _leftBuildings)
             {
                 building.Position = new Vector2(0, cY);
-                cY -= TEXTURE_HEIGHT;
+                cY -= building.Height;
             }
 
-            foreach (Building building in rightBuildings)
+            foreach (GameObject building in _rightBuildings)
             {
-                building.Position = new Vector2(screenWidth - building.Texture.Width, cY);
-                cY -= TEXTURE_HEIGHT;
+                building.Position = new Vector2(_screenWidth - building.Width, cY);
+                cY -= building.Height;
             }
 
-            updatePositions();
+            UpdatePositions();
         }
 
-        private void updatePositions()
+        private void UpdatePositions()
         {
-            leftFirst = leftBuildings.First.Value.Position;
-            leftLast = leftBuildings.Last.Value.Position;
-            rightFirst = rightBuildings.First.Value.Position;
-            rightLast = rightBuildings.Last.Value.Position;
+            _leftFirst = _leftBuildings.First.Value.Position;
+            _leftLast = _leftBuildings.Last.Value.Position;
+            _rightFirst = _rightBuildings.First.Value.Position;
+            _rightLast = _rightBuildings.Last.Value.Position;
         }
 
-        private Building getRandomBuilding(Random seed)
+        /// <summary>
+        /// Returns a building with a random texture.
+        /// Used to randomize textures in the scroller.
+        /// This may or may not look good in the final product as it is completely random.
+        /// Markov chain can be applied here to give towers a logical look.
+        /// </summary>
+        /// <param name="seed"></param>
+        /// <returns></returns>
+        private GameObject GetRandomBuilding(Random seed)
         {
-            Building[] buildings = new Building[] {new BuildingBrick(content), new BuildingBillboard(content)};
-            return buildings[seed.Next(0, buildings.Length)];
+            // Add possible textures to this array.
+            Texture2D[] textures = new Texture2D[] { _buildingTexture };
+            return new GameObject(textures[seed.Next(0, textures.Length)], _scale, Vector2.Zero, new Vector2(0, 1), _velocity);
         }
 
         public void Update(GameTime gameTime)
         {
             Random seed = new Random();
 
-            if (leftLast.Y < -TEXTURE_HEIGHT)
+            if (_leftLast.Y < -_buildingTexture.Height * _scale)
             {
-                Building stackBuilding = getRandomBuilding(seed);
-                stackBuilding.Position = new Vector2(0, leftFirst.Y + TEXTURE_HEIGHT);
-                leftBuildings.AddFirst(stackBuilding);
-                leftBuildings.RemoveLast();
+                GameObject stackBuilding = GetRandomBuilding(seed);
+                stackBuilding.Position = new Vector2(0, _leftFirst.Y + stackBuilding.Height);
+                _leftBuildings.AddFirst(stackBuilding);
+                _leftBuildings.RemoveLast();
             }
 
-            if (rightLast.Y < -TEXTURE_HEIGHT)
+            if (_rightLast.Y < -_buildingTexture.Height * _scale)
             {
-                Building stackBuilding = getRandomBuilding(seed);
-                stackBuilding.Position = new Vector2(screenWidth - stackBuilding.Texture.Width, rightFirst.Y + TEXTURE_HEIGHT);
-                rightBuildings.AddFirst(stackBuilding);
-                rightBuildings.RemoveLast();
+                GameObject stackBuilding = GetRandomBuilding(seed);
+                stackBuilding.Position = new Vector2(_screenWidth - stackBuilding.Width, _rightFirst.Y + stackBuilding.Height);
+                _rightBuildings.AddFirst(stackBuilding);
+                _rightBuildings.RemoveLast();
             }
 
-            foreach (Building building in leftBuildings)
+            foreach (GameObject building in _leftBuildings)
             {
-                building.Update(gameTime, speed);
+                building.Position -= new Vector2(0, 1) * building.Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            foreach (Building building in rightBuildings)
+            foreach (GameObject building in _rightBuildings)
             {
-                building.Update(gameTime, speed);
+                building.Position -= new Vector2(0, 1) * building.Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            updatePositions();
+            UpdatePositions();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Building building in leftBuildings)
+            foreach (GameObject building in _leftBuildings)
             {
-                building.Draw(spriteBatch, SpriteEffects.None);
+                building.Draw(spriteBatch);
             }
 
-            foreach (Building building in rightBuildings)
+            foreach (GameObject building in _rightBuildings)
             {
-                building.Draw(spriteBatch, SpriteEffects.FlipHorizontally);
+                building.Draw(spriteBatch);
             }
         }
     }

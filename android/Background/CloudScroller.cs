@@ -1,5 +1,6 @@
 using System;
 using FallingCatGame.Main;
+using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -9,100 +10,87 @@ namespace FallingCatGame.Background
 {
     public class CloudScroller : IGameLogic
     {
-        private const int NUMBER_OF_CLOUDS = 6;
-        private ContentManager content;
-        private List<List<Cloud>> clouds;
-        private List<Cloud> firstLayer;
-        private List<Cloud> secondLayer;
-        private List<Cloud> thirdLayer;
-        private int screenWidth;
-        private int screenHeight;
-        private Texture2D cloudSmall;
-        private Texture2D cloudMedium;
-        private Texture2D cloudLarge;
+        // The number of clouds on screen at a given time, this number is divided by the number of cloud layers.
+        private const int NumberOfClouds = 6;
 
-        public CloudScroller(ContentManager content)
+        private int _screenWidth;
+        private int _screenHeight;
+
+        // Cloud properties.
+        private Texture2D _cloudTexture;
+        private float _scale;
+
+        // Scroller properties.
+        private List<List<GameObject>> _clouds;
+        private List<GameObject> _firstLayer;
+        private List<GameObject> _secondLayer;
+        private List<GameObject> _thirdLayer;
+
+        public CloudScroller(ContentManager content, float scale)
         {
-            this.content = content;
+            _screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
-            firstLayer = new List<Cloud>();
-            secondLayer = new List<Cloud>();
-            thirdLayer = new List<Cloud>();
-            clouds = new List<List<Cloud>>();
+            _firstLayer = new List<GameObject>();
+            _secondLayer = new List<GameObject>();
+            _thirdLayer = new List<GameObject>();
+            _clouds = new List<List<GameObject>>();
 
-            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-
-            loadContent();
-            initializeClouds();
+            _scale = scale;
+            LoadContent(content);
+            InitializeClouds();
         }
 
-        private void loadContent()
+        private void LoadContent(ContentManager content)
         {
-            cloudSmall = content.Load<Texture2D>("Cloud_Small");
-            cloudMedium = content.Load<Texture2D>("Cloud_Medium");
-            cloudLarge = content.Load<Texture2D>("Cloud_Large");
+            _cloudTexture = content.Load<Texture2D>("Cloud");
         }
 
-        private void initializeClouds()
+        private void InitializeClouds()
         {
             int nClouds = NUMBER_OF_CLOUDS / 3;
             Random seed = new Random();
 
             for (int i = 0; i < nClouds; i++)
             {
-                firstLayer.Add(getRandomCloud(1f, seed.Next(100, 200), Color.White, seed));
-                secondLayer.Add(getRandomCloud(0.67f, seed.Next(50, 100), Color.LightGray, seed));
-                thirdLayer.Add(getRandomCloud(0.34f, seed.Next(25, 50), Color.SlateGray, seed));
+                _firstLayer.Add(new GameObject(_cloudTexture, _scale, Vector2.Zero, new Vector2(1, 0), seed.Next(100, 200)));
+                _secondLayer.Add(new GameObject(_cloudTexture, _scale * 2, Vector2.Zero, new Vector2(1, 0), seed.Next(50, 100)));
+                _thirdLayer.Add(new GameObject(_cloudTexture, _scale * 3, Vector2.Zero, new Vector2(1, 0),  seed.Next(25, 50)));
             }
 
-            clouds.Add(thirdLayer);
-            clouds.Add(secondLayer);
-            clouds.Add(firstLayer);
+            _clouds.Add(_thirdLayer);
+            _clouds.Add(_secondLayer);
+            _clouds.Add(_firstLayer);
         }
 
-        private Vector2 getRandomYPosition(Random seed)
+        private Vector2 GetRandomYPosition(Random seed)
         {
-            return new Vector2(screenWidth, seed.Next(0, screenHeight / 2));
-        }
-
-        private Texture2D getRandomTexture(Random seed)
-        {
-            Texture2D[] textures = new Texture2D[] { cloudSmall, cloudMedium, cloudLarge };
-            return textures[seed.Next(0, textures.Length)];
-        }
-
-        private Cloud getRandomCloud(float scale, int speed, Color color, Random seed)
-        {
-            Cloud cloud = new Cloud(content, scale, speed, color, getRandomTexture(seed));
-            cloud.Position = getRandomYPosition(seed);
-            return cloud;
+            return new Vector2(_screenWidth, seed.Next(0, _screenHeight / 2));
         }
 
         public void Update(GameTime gameTime)
         {
             Random seed = new Random();
 
-            foreach (List<Cloud> layer in clouds)
+            foreach (List<GameObject> layer in _clouds)
             {
-                foreach (Cloud cloud in layer)
+                foreach (GameObject cloud in layer)
                 {
-                    if (cloud.Position.X < 0)
+                    if (cloud.Position.X < 0 - cloud.Width)
                     {
-                        cloud.Position = getRandomYPosition(seed);
-                        cloud.Texture = getRandomTexture(seed);
+                        cloud.Position = GetRandomYPosition(seed);
                     }
 
-                    cloud.Update(gameTime);
+                    cloud.Position -= cloud.Direction * cloud.Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (List<Cloud> layer in clouds)
+            foreach (List<GameObject> layer in _clouds)
             {
-                foreach (Cloud cloud in layer)
+                foreach (GameObject cloud in layer)
                 {
                     cloud.Draw(spriteBatch);
                 }

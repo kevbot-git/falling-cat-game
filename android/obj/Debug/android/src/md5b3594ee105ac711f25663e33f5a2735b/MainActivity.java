@@ -1,7 +1,7 @@
 package md5b3594ee105ac711f25663e33f5a2735b;
 
 
-public class GameActivity
+public class MainActivity
 	extends md5741e60a80250ab7e7b6f039198ff6a46.AndroidGameActivity
 	implements
 		mono.android.IGCUserPeer
@@ -14,15 +14,15 @@ public class GameActivity
 			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onPause:()V:GetOnPauseHandler\n" +
 			"";
-		mono.android.Runtime.register ("FallingCatGame.Main.GameActivity, FallingCatGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", GameActivity.class, __md_methods);
+		mono.android.Runtime.register ("FallingCatGame.Main.MainActivity, FallingCatGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MainActivity.class, __md_methods);
 	}
 
 
-	public GameActivity () throws java.lang.Throwable
+	public MainActivity () throws java.lang.Throwable
 	{
 		super ();
-		if (getClass () == GameActivity.class)
-			mono.android.TypeManager.Activate ("FallingCatGame.Main.GameActivity, FallingCatGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+		if (getClass () == MainActivity.class)
+			mono.android.TypeManager.Activate ("FallingCatGame.Main.MainActivity, FallingCatGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 

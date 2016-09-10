@@ -4,10 +4,11 @@
   <Platform>Android</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/kamen/Source/Repos/falling-cat-game/android/Content/Building_Brick.png</File>
-    <File>C:/Users/kamen/Source/Repos/falling-cat-game/android/Content/Cloud_Small.png</File>
-    <File>C:/Users/kamen/Source/Repos/falling-cat-game/android/Content/Cloud_Medium.png</File>
-    <File>C:/Users/kamen/Source/Repos/falling-cat-game/android/Content/Cloud_Large.png</File>
-    <File>C:/Users/kamen/Source/Repos/falling-cat-game/android/Content/Building_Brick_Billboard.png</File>
+    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Menu_Short_Button.png</File>
+    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Menu_Long_Button.png</File>
+    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Building.png</File>
+    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Cat.png</File>
+    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Cloud.png</File>
+    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/NYApartmentBuilding.png</File>
   </SourceFiles>
 </SourceFileCollection>
