@@ -48,7 +48,7 @@ namespace FallingCatGame.Background
 
         private void InitializeClouds()
         {
-            int nClouds = NUMBER_OF_CLOUDS / 3;
+			int nClouds = NumberOfClouds / 3;
             Random seed = new Random();
 
             for (int i = 0; i < nClouds; i++)
