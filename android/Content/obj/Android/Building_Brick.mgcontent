@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/kamen/Documents/Visual Studio 2015/Projects/falling-cat-game/android/Content/Building_Brick.png</SourceFile>
-  <SourceTime>2016-08-17T11:27:46.1077308+12:00</SourceTime>
+  <SourceTime>2016-08-23T11:24:42.346671+12:00</SourceTime>
   <DestFile>C:/Users/kamen/Documents/Visual Studio 2015/Projects/falling-cat-game/android/Content/bin/Android/Building_Brick.xnb</DestFile>
-  <DestTime>2016-08-17T11:28:14.6235566+12:00</DestTime>
+  <DestTime>2016-08-23T11:25:15.8964642+12:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T19:36:08+13:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

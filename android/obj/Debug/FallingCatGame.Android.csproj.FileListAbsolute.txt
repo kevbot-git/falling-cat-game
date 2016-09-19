@@ -90,7 +90,6 @@ C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\bi
 C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\bin\Android\AnyCPU\Debug\FallingCatGame.FallingCatGame-Signed.apk
 C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\bin\Android\AnyCPU\Debug\MonoGame.Framework.dll
 C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\bin\Android\AnyCPU\Debug\MonoGame.Framework.xml
-C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\obj\Debug\FallingCatGame.Android.csprojResolveAssemblyReference.cache
 C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\obj\Debug\FallingCatGame.dll
 C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\obj\Debug\FallingCatGame.pdb
 C:\Users\kamen\Documents\Visual Studio 2015\Projects\falling-cat-game\android\obj\Debug\android\bin\FallingCatGame.FallingCatGame.apk
