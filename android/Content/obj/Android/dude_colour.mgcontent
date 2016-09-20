@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/kamen/Documents/Visual Studio 2015/Projects/falling-cat-game/android/Content/dude_colour.png</SourceFile>
-  <SourceTime>2016-08-23T11:24:42.3591653+12:00</SourceTime>
+  <SourceTime>2016-09-19T12:15:56.499674+12:00</SourceTime>
   <DestFile>C:/Users/kamen/Documents/Visual Studio 2015/Projects/falling-cat-game/android/Content/bin/Android/dude_colour.xnb</DestFile>
-  <DestTime>2016-08-23T11:25:16.0334686+12:00</DestTime>
+  <DestTime>2016-09-19T12:16:44.6981948+12:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T19:36:08+13:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
