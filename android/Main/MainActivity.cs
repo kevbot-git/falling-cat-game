@@ -18,13 +18,13 @@ namespace FallingCatGame.Main
     public class MainActivity : AndroidGameActivity
     {
         private SensorManager sensorManager;
-        private Main game;
+        private MainGame game;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             sensorManager = (SensorManager)GetSystemService(SensorService);
-            game = new Main();
+            game = new MainGame();
             SetContentView((View)game.Services.GetService(typeof(View)));
             game.Run();
         }

@@ -6,7 +6,7 @@ using FallingCatGame.Menus;
 
 namespace FallingCatGame.Main
 {
-    public class Main : Game
+    public class MainGame : Game
     {
         // XNA Standard.
         GraphicsDeviceManager graphics;
@@ -17,7 +17,7 @@ namespace FallingCatGame.Main
         GameStates state;
         MainMenu menu;
 
-        public Main()
+        public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -82,8 +82,7 @@ namespace FallingCatGame.Main
             switch (state)
             {
 				case GameStates.Testing:
-					// test.Run()
-				break;
+				    break;
                 case GameStates.MainMenu:
                     Button b = menu.CheckCollision(touches);
                     if (b != null)
