@@ -2,6 +2,7 @@
 {
     public enum GameStates
     {
+		Testing,
         MainMenu,
         Settings,
         Playing,

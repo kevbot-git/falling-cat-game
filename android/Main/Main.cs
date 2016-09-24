@@ -40,7 +40,7 @@ namespace FallingCatGame.Main
             TouchPanel.EnabledGestures = GestureType.Tap | GestureType.Hold;
 
             // Set the inital game state to the main menu.
-            state = GameStates.MainMenu;
+            state = GameStates.Testing;
 
             gameScreen = new GameScreen(Content);
             menu = new MainMenu(Content);
@@ -81,6 +81,8 @@ namespace FallingCatGame.Main
 
             switch (state)
             {
+				case GameStates.Testing:
+				break;
                 case GameStates.MainMenu:
                     Button b = menu.CheckCollision(touches);
                     if (b != null)
@@ -108,6 +110,8 @@ namespace FallingCatGame.Main
 
             switch (state)
             {
+				case GameStates.Testing:
+					break;
                 case GameStates.MainMenu:
                     menu.Draw(spriteBatch);
                     break;
