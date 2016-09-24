@@ -82,6 +82,7 @@ namespace FallingCatGame.Main
             switch (state)
             {
 				case GameStates.Testing:
+					// test.Run()
 				break;
                 case GameStates.MainMenu:
                     Button b = menu.CheckCollision(touches);
