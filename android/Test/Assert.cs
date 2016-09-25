@@ -1,53 +1,68 @@
-﻿using System;
+﻿using Android.Util;
+
 namespace FallingCatGame
 {
 	public class Assert
 	{
+        protected const string Tag = "FALLINGCAT";
+        private int _nSuccess = 0;
+        private int _nFail = 0;
 
-		public Assert()
+        public Assert()
 		{
-		}
-
-		public bool Equal(object expected, object actual, string message)
-		{
-			if (expected.Equals(actual))
-				return true;
-			// do something with failure..
-			return false;
-		}
-
-		public bool False(bool val, string message)
-		{
-			if (val != false)
-				// do something with failure..
-				return false;
-			return true;
-		}
-
-		public bool True(bool val, string message)
-		{
-			if (val != true)
-				// do something with failure..
-				return false;
-			return true;
-		}
-
-
-		public bool Null(object obj, string message)
-		{
-			if (obj == null)
-				return true;
-			// do something with failure..
-			return false;
 
 		}
 
-		public bool NotNull(object obj, string message)
+		public void Equal(object expected, object actual, string message)
 		{
-			if (obj != null)
-				return true;
-			// do something with failure..
-			return false;
+            if (!expected.Equals(actual))
+                Fail(message);
+            else
+                Success();
 		}
+
+		public void False(bool val, string message)
+		{
+            if (val)
+                Fail(message);
+            else
+                Success();
+		}
+
+		public void True(bool val, string message)
+		{
+            if (!val)
+                Fail(message);
+            else
+                Success();
+        }
+
+
+		public void Null(object obj, string message)
+		{
+            if (obj != null)
+                Fail(message);
+            else
+                Success();
+        }
+
+		public void NotNull(object obj, string message)
+		{
+            if (obj == null)
+                Fail(message);
+            else
+                Success();
+        }
+
+        private void Success()
+        {
+            _nSuccess++;
+        }
+
+        private void Fail(string message)
+        {
+            _nFail++;
+            Log.Debug(Tag, message);
+        }
 	}
 }

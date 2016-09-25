@@ -56,7 +56,7 @@ namespace FallingCatGame.Background
 
         private void LoadContent(ContentManager content)
         {
-            _buildingTexture = content.Load<Texture2D>("NYApartmentBuilding");
+            _buildingTexture = content.Load<Texture2D>("Building");
         }
 
         private void InitiatePositions()

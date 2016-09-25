@@ -1,24 +1,28 @@
+using FallingCatGame.Background;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace FallingCatGame.Test.Tests
 {
-    public class ScrollTest : TestObject
+    public class ScrollTest : UpdatingTestObject
     {
-        public override void SetUp()
+        private BuildingScroller buildingScroller;
+
+        public ScrollTest(ContentManager content)
         {
-            throw new NotImplementedException();
+            SetUp(content);
         }
 
-        public override void Run()
+        public void SetUp(ContentManager content)
         {
-            _isRunning = true;
+            buildingScroller = new BuildingScroller(content, 1);
         }
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            buildingScroller.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

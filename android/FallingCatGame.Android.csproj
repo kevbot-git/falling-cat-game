@@ -72,9 +72,13 @@
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\Assert.cs" />
     <Compile Include="Test\TestRunner.cs" />
+    <Compile Include="Test\Tests\BasicTest.cs" />
     <Compile Include="Test\Tests\ScrollTest.cs" />
     <Compile Include="Test\Tests\TestObject.cs" />
+    <Compile Include="Test\Tests\UpdatingTestObject.cs" />
+    <Compile Include="Test\UpdatingTestRunner.cs" />
     <Compile Include="Tools\Graph.cs" />
   </ItemGroup>
   <ItemGroup>
