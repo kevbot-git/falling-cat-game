@@ -10,7 +10,7 @@ namespace FallingCatGame.Test.Tests
     /// <summary>
     /// This testing asserts that the buildings in the scroller spawn in the correct positions and are deleted when they go off screen.
     /// </summary>
-    public class ScrollTest : UpdatingTestObject
+    public class BuildingScrollerTest : UpdatingTestObject
     {
         private BuildingScroller _buildingScroller;
         // To test if the last building in the scroller is deleted at the right time.
@@ -19,7 +19,7 @@ namespace FallingCatGame.Test.Tests
         private Texture2D _buildingTexture;
         private float _buildingScale;
 
-        public ScrollTest(ContentManager content)
+        public BuildingScrollerTest(ContentManager content)
         {
             SetUp(content);
             RunPreUpdateTests();
@@ -60,7 +60,7 @@ namespace FallingCatGame.Test.Tests
             // Check if the last, or top building, spawned in the correct position.
             _assert.Equal(yLastInitialPosition, 0 + buildingHeight, "Top building on left did not spawn on the correct Y axis.");
 
-            // Store the last, or top, building object to test when it should get deleted offscreen.
+            // Store the last, or top, building object to test when if it was deleted when it went off screen.
             _initLastBuilding = _buildingScroller.LeftBuildings.Last.Value;
         }
 
@@ -70,7 +70,7 @@ namespace FallingCatGame.Test.Tests
             _assert.NotEqual(_initLastBuilding, _buildingScroller.LeftBuildings.Last.Value, "Building in scroller was not deleted when it was off screen.");
 
             // Log test results and flag as finished.
-            _assert.TestResults("ScrollTest");
+            _assert.TestResults("BuildingScrollTest");
             _isFinished = true;
         }
 
@@ -82,6 +82,7 @@ namespace FallingCatGame.Test.Tests
             _buildingScroller.Update(gameTime);
 
             // Check if the last building should have been deleted on the last update.
+            // If the Y position of the left top building is less than 0 - building height, it is offscreen.
             if (_leftLastY < -_buildingTexture.Height * _buildingScale)
             {
                 // Building should have been deleted on the last update.

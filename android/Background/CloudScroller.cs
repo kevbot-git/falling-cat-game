@@ -41,6 +41,11 @@ namespace FallingCatGame.Background
 			InitializeClouds();
 		}
 
+        public List<List<GameObject>> Clouds
+        {
+            get { return _clouds; }
+        }
+
 		private void LoadContent(ContentManager content)
 		{
 			_cloudTexture = content.Load<Texture2D>("Cloud");

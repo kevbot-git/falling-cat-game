@@ -34,7 +34,8 @@ namespace FallingCatGame.Test
             _tests = new Queue();
 
             // Enqueue all of your tests that require XNA's Update() or Draw() here.
-            _tests.Enqueue(new ScrollTest(content));
+            _tests.Enqueue(new BuildingScrollerTest(content));
+            _tests.Enqueue(new CloudScrollerTest(content));
 
             // Leave this.
             _tests.Enqueue(null);
