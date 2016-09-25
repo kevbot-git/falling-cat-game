@@ -68,6 +68,8 @@ namespace FallingCatGame.Test.Tests
         {
             // Assert that the last building had been deleted after the last update.
             _assert.NotEqual(_initLastBuilding, _buildingScroller.LeftBuildings.Last.Value, "Building in scroller was not deleted when it was off screen.");
+
+            // Log test results and flag as finished.
             _assert.TestResults("ScrollTest");
             _isFinished = true;
         }

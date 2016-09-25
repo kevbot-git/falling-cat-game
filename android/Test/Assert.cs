@@ -7,6 +7,7 @@ namespace FallingCatGame
         // The tag in which all unit test results are found under.
         // This tag does not have to be a constant. Upon creation of a test class, a custom tag could be passed into the assert object.
         // But by default it's to group all unit tests together under one tab.
+        // To view all the unit test logs, select FALLINGCAT from the Android Device Logging 'filter by:' drop down menu.
         protected const string Tag = "FALLINGCAT";
 
         // Counts the number of pass and fail.
