@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 namespace FallingCatGame.Test.Tests
 {
+    /// <summary>
+    /// Asserts that the moment a cloud goes off screen it is respawned on the other side.
+    /// </summary>
     public class CloudScrollerTest : UpdatingTestObject
     {
         private CloudScroller _cloudScroller;
@@ -32,11 +35,15 @@ namespace FallingCatGame.Test.Tests
             // Create cloud scroller passing in it's relative scale.
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
 
+            // The cloud should spawn at the X value == screen width or in point range.
             _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         }
 
         public override void RunPostUpdateTests()
         {
+            // Test might fail even though it works as intended.
+            // This is because the clouds are scaled to float point accuracy, and their positions are updated with game time.
+            // A result of 1076.733 when screen width is 1080 should be acceptable.
             _assert.Equal(_cloudToTest.Position.X, _screenWidth, "Cloud hasn't been given a new position after going off screen.");
             _assert.TestResults("CloudScrollTest");
             _isFinished = true;
@@ -49,12 +56,14 @@ namespace FallingCatGame.Test.Tests
 
         public override void Update(GameTime gameTime)
         {
+            // Check if a cloud has gone off screen.
             foreach (List<GameObject> layer in _cloudScroller.Clouds)
             {
                 foreach (GameObject cloud in layer)
                 {
                     if (cloud.Position.X < 0 - cloud.Width)
                     {
+                        // If a cloud has gone off screen. It should be respawned on the other side after update.
                         _cloudToTest = cloud;
                         _testCloud = true;
                     }

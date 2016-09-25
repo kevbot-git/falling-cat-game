@@ -27,7 +27,6 @@ namespace FallingCatGame.Test
             _tests = new Queue();
 
             // Enqueue all of your tests that do not require XNA's Update() or Draw() here.
-            _tests.Enqueue(new BasicTest());
 
             // Leave this.
             _tests.Enqueue(null);
