@@ -54,6 +54,11 @@ namespace FallingCatGame.Background
             InitiatePositions();
         }
 
+        public LinkedList<GameObject> LeftBuildings
+        {
+            get { return _leftBuildings; }
+        }
+
         private void LoadContent(ContentManager content)
         {
             _buildingTexture = content.Load<Texture2D>("Building");
