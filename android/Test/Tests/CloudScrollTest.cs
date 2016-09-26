@@ -42,8 +42,8 @@ namespace FallingCatGame.Test.Tests
         public override void RunPostUpdateTests()
         {
             // Test might fail even though it works as intended.
-            // This is because the clouds are scaled to float accuracy, and their positions are updated and tied with game time.
-            // A result of 1076.733 when screen width is 1080 should be acceptable.
+            // This is because the clouds positions are updated straight after reposition (in the same loop) tied with game time.
+            // A result of 1076.733 for example when screen width is 1080 should be acceptable. This is because the difference is the distance the cloud has moved.
             _assert.Equal(_cloudToTest.Position.X, _screenWidth, "Cloud hasn't been given a new position after going off screen.");
             _assert.TestResults("CloudScrollTest");
             _isFinished = true;

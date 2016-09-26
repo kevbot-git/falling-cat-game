@@ -76,6 +76,7 @@
     <Compile Include="Test\TestRunner.cs" />
     <Compile Include="Test\Tests\BuildingScrollTest.cs" />
     <Compile Include="Test\Tests\CloudScrollTest.cs" />
+    <Compile Include="Test\Tests\ScaleTest.cs" />
     <Compile Include="Test\Tests\TestObject.cs" />
     <Compile Include="Test\Tests\UpdatingTestObject.cs" />
     <Compile Include="Test\UpdatingTestRunner.cs" />

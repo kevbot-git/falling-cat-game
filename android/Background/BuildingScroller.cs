@@ -41,8 +41,8 @@ namespace FallingCatGame.Background
 
             _screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-
-            _nBuildings = (int)Math.Round(_screenHeight / (_buildingTexture.Height * scale), MidpointRounding.AwayFromZero);
+            _nBuildings = (int)(_screenHeight / _buildingTexture.Height * scale);
+            // _nBuildings = (int)Math.Round(_screenHeight / (_buildingTexture.Height * scale), MidpointRounding.AwayFromZero);
 
             // +1 to fill up fractional space.
             for (int i = 0; i < _nBuildings + 1; i++)
