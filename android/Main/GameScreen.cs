@@ -1,4 +1,5 @@
-﻿using FallingCatGame.Background;
+﻿using Android.Util;
+using FallingCatGame.Background;
 using FallingCatGame.Drawing;
 using FallingCatGame.Player;
 using Microsoft.Xna.Framework;
@@ -50,7 +51,11 @@ namespace FallingCatGame.Main
 
             _player = new PlayerObject(cat, scale.LaneScale, new Vector2(screenWidth / 2, 20));
 
+            Log.Debug("FALLINGCAT", "Testing _player correctly initiated: " + ((_player != null) ? "PASS": "FAIL"));
+
             playerControl = new PlayerControl(_player, screenWidth / 2 - _player.Width, screenWidth / 2 + _player.Width, screenWidth / 2);
+
+            Log.Debug("FALLINGCAT", "Testing playerControl correctly initiated: " + ((playerControl != null) ? "PASS" : "FAIL"));
         }
 
         public void Update(GameTime gameTime)
