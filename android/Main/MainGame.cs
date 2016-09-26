@@ -19,7 +19,7 @@ namespace FallingCatGame.Main
         MainMenu menu;
 
         TestRunner testRunner;
-        UpdatingTestRunner updatingTestRunner;
+        //UpdatingTestRunner updatingTestRunner;
 
         public MainGame()
         {
@@ -43,15 +43,15 @@ namespace FallingCatGame.Main
             // Set which gestures are allowed for android users.
             TouchPanel.EnabledGestures = GestureType.Tap | GestureType.Hold;
 
+			// Set the inital game state to testing.
+			state = GameStates.Testing;
+
             // Create and run all tests that don't depend on XNA's Update() or Draw() methods.
-            testRunner = new TestRunner();
+			testRunner = new TestRunner(Content);
             testRunner.RunTests();
 
             // Set up tests that depend on XNA's Update() and Draw() methods.
-            updatingTestRunner = new UpdatingTestRunner(Content);
-
-            // Set the inital game state to testing.
-            state = GameStates.Testing;
+            //updatingTestRunner = new UpdatingTestRunner(Content);
 
             gameScreen = new GameScreen(Content);
             menu = new MainMenu(Content);
@@ -93,9 +93,9 @@ namespace FallingCatGame.Main
             switch (state)
             {
 				case GameStates.Testing:
-                    updatingTestRunner.Update(gameTime);
-                    if (updatingTestRunner.IsComplete)
-                        state = GameStates.Playing;
+                    //updatingTestRunner.Update(gameTime);
+                   // if (updatingTestRunner.IsComplete)
+                     //   state = GameStates.Playing;
 				    break;
                 case GameStates.MainMenu:
                     Button b = menu.CheckCollision(touches);

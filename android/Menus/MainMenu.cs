@@ -15,7 +15,7 @@ namespace FallingCatGame.Menus
         private Button level;
         private Button highscores;
 
-        private Button[] buttons;
+        public Button[] buttons;
 
         private ContentManager content;
 

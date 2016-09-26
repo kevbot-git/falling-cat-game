@@ -1,5 +1,6 @@
 using FallingCatGame.Test.Tests;
 using System.Collections;
+using Microsoft.Xna.Framework.Content;
 
 namespace FallingCatGame.Test
 {
@@ -13,21 +14,22 @@ namespace FallingCatGame.Test
         private Queue _tests;
         private TestObject _current;
 
+
         /// <summary>
         /// Any Monogame or Android dependencies can be passed through the constructor and then through SetUp() into your tests.
         /// For example, ContentManager.
         /// </summary>
-        public TestRunner()
+        public TestRunner(ContentManager content)
         {
-            SetUp();
+            SetUp(content);
         }
 
-        private void SetUp()
+		private void SetUp(ContentManager content)
         {
             _tests = new Queue();
 
             // Enqueue all of your tests that do not require XNA's Update() or Draw() here.
-            _tests.Enqueue(new BasicTest());
+            _tests.Enqueue(new MenuTest(content));
 
             // Leave this.
             _tests.Enqueue(null);
