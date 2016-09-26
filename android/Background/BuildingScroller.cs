@@ -5,6 +5,7 @@ using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Android.Util;
 
 namespace FallingCatGame.Background
 {
@@ -41,9 +42,10 @@ namespace FallingCatGame.Background
             _screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
-            _nBuildings = (int)(_screenHeight / _buildingTexture.Height * scale);
+            _nBuildings = (int)Math.Round(_screenHeight / (_buildingTexture.Height * scale), MidpointRounding.AwayFromZero);
 
-            for (int i = 0; i < _nBuildings + 2; i++)
+            // +1 to fill up fractional space.
+            for (int i = 0; i < _nBuildings + 1; i++)
             {
                 // No position passed into constructor as position is later initialized.
                 GameObject building = new GameObject(_buildingTexture, _scale, Vector2.Zero, new Vector2(0, 1), _velocity);

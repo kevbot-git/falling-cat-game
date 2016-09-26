@@ -1,3 +1,4 @@
+using Android.Util;
 using FallingCatGame.Background;
 using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
@@ -41,24 +42,18 @@ namespace FallingCatGame.Test.Tests
 
         public override void RunPreUpdateTests()
         {
-            // Get first building and last building in scroller and their positions.
-            float xFirstInitialPosition = _buildingScroller.LeftBuildings.First.Value.Position.X;
-            float yFirstInitialPosition = _buildingScroller.LeftBuildings.First.Value.Position.Y;
-            float xLastInitialPosition = _buildingScroller.LeftBuildings.Last.Value.Position.X;
-            float yLastInitialPosition = _buildingScroller.LeftBuildings.Last.Value.Position.Y;
-
             // Get the screen height and height of building in scroller.
             float screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             float buildingHeight = _buildingScroller.LeftBuildings.First.Value.Height;
 
-            // Test if the initial building spawn positions are correct.
-            // Both first and last buildings in the scroller should have an X position of 0.
-            _assert.Equal(xFirstInitialPosition, 0, "Bottom building on left did not spawn on the zero X axis.");
-            _assert.Equal(xLastInitialPosition, 0, "Top building on left did not spawn on the zero X axis.");
-            // Check if the first, or bottom building, spawned in the correct position.
-            _assert.Equal(yFirstInitialPosition, screenHeight - buildingHeight, "Bottom building on left did not spawn on the correct Y axis.");
-            // Check if the last, or top building, spawned in the correct position.
-            _assert.Equal(yLastInitialPosition, 0 + buildingHeight, "Top building on left did not spawn on the correct Y axis.");
+            // Testing that the correct number of buildings are created initially.
+            // If incorrect, too many building objects is wasteful of memory and could also cause problems later on when needing the correct number of buildings.
+            // Too little buildings would cause visible gaps in the scroller.
+            // Get number of buildings initialized in scroller.
+            int nBuildings = _buildingScroller.LeftBuildings.Count - 1;
+            // Divide the screenheight by post scaled building height.
+            // If result does not match the actual height of a building, the number of buildings were calulated incorrectly through scaling or from an error in calculating.
+            _assert.Equal(nBuildings, (int) Math.Round(screenHeight / buildingHeight, MidpointRounding.AwayFromZero), "Incorrect number of buildings initialized.");
 
             // Store the last, or top, building object to test when if it was deleted when it went off screen.
             _initLastBuilding = _buildingScroller.LeftBuildings.Last.Value;
