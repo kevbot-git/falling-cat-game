@@ -13,7 +13,7 @@ namespace FallingCatGame.Main
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        GameScreen gameScreen;
+        internal GameScreen gameScreen;
 
         GameStates state;
         MainMenu menu;
