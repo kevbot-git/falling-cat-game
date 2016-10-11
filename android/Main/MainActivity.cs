@@ -32,8 +32,8 @@ namespace FallingCatGame.Main
                 {
                     if (game.gameScreen != null)
                     {
-                        if (game.gameScreen.playerControl != null)
-                            game.gameScreen.playerControl.accel = new Vector3(e.Values[0], e.Values[1], e.Values[2]);
+                        if (game.gameScreen._playerControl != null)
+                            game.gameScreen._playerControl.accel = new Vector3(e.Values[0], e.Values[1], e.Values[2]);
                     }
                 }
             }

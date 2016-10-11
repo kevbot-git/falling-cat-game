@@ -37,7 +37,7 @@
 /processorParam:TextureFormat=Color
 /build:Menu_Long_Button.png
 
-#begin Building.png
+#begin Cloud.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,7 +47,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Building.png
+/build:Cloud.png
 
 #begin Cat.png
 /importer:TextureImporter
@@ -61,7 +61,7 @@
 /processorParam:TextureFormat=Color
 /build:Cat.png
 
-#begin Cloud.png
+#begin Building.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,5 +71,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Cloud.png
+/build:Building.png
 

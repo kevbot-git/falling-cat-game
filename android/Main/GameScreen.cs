@@ -12,9 +12,10 @@ namespace FallingCatGame.Main
         // Background objects.
         private BuildingScroller _buildingScroller;
         private CloudScroller _cloudScroller;
-        private PlayerObject _player;
 
-        internal PlayerControl playerControl;
+        // Player objects.
+        private PlayerObject _player;
+        internal PlayerControl _playerControl;
 
         public GameScreen(ContentManager content)
         {
@@ -40,28 +41,24 @@ namespace FallingCatGame.Main
         /// <param name="scale">The ScaleHelper containing the calculated scale factors, to be selected and applied to the objects.</param>
         private void LoadContent(ContentManager content, ScaleHelper scale)
         {
-            float screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-
-            Texture2D cat = content.Load<Texture2D>("Cat");
-
             // Load the scrollers.
             _buildingScroller = new BuildingScroller(content, scale.BuildingScale);
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
 
-            _player = new PlayerObject(cat, scale.LaneScale, new Vector2(screenWidth / 2, 20));
-
-            playerControl = new PlayerControl(_player, screenWidth / 2 - _player.Width, screenWidth / 2 + _player.Width, screenWidth / 2);
+            // Load the player.
+            _player = new PlayerObject(content.Load<Texture2D>("Cat"), scale.LaneScale);
+            _playerControl = new PlayerControl(_player);
         }
 
         public void Update(GameTime gameTime)
         {
-            playerControl.Update(gameTime);
-
             // Update the scrollers.
             _cloudScroller.Update(gameTime);
             _buildingScroller.Update(gameTime);
 
+            // Update the player.
             _player.Update(gameTime);
+            _playerControl.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -69,6 +66,8 @@ namespace FallingCatGame.Main
             // Draw the scrollers.
             _cloudScroller.Draw(spriteBatch);
             _buildingScroller.Draw(spriteBatch);
+
+            // Draw the player.
             _player.Draw(spriteBatch);
         }
     }

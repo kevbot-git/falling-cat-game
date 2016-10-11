@@ -14,6 +14,7 @@ namespace FallingCatGame.Drawing
         // Standard 2D game object variables.
         private Texture2D _texture;
         private Vector2 _position;
+        private Vector2 _origin;
         private Vector2 _direction;
         private float _velocity;
 
@@ -22,7 +23,9 @@ namespace FallingCatGame.Drawing
         private float _height;
         private float _scale;
 
-        public GameObject(Texture2D texture, float scale, Vector2 position, Vector2 direction, float velocity)
+        private SpriteEffects _spriteEffect;
+
+        public GameObject(Texture2D texture, bool centerAsOrigin, float scale, Vector2 position, Vector2 direction, float velocity, SpriteEffects spriteEffect)
         {
             _texture = texture;
             _scale = scale;
@@ -30,17 +33,27 @@ namespace FallingCatGame.Drawing
             _direction = direction;
             _position = position;
 
+            if (centerAsOrigin)
+                _origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            else
+                _origin = Vector2.Zero;
+
             // Assigning scaled dimension.
             _width = texture.Width * scale;
             _height = texture.Height * scale;
+
+            _spriteEffect = spriteEffect;
         }
 
         // Constructor without velocity and direction.
-        public GameObject(Texture2D texture, float scale, Vector2 position) : this(texture, scale, Vector2.Zero, Vector2.Zero, 0)
-        {
-            _width = texture.Width * scale;
-            _height = texture.Height * scale;
-        }
+        public GameObject(Texture2D texture, bool centerAsOrigin, float scale, Vector2 position) : this(texture, centerAsOrigin, scale, position, Vector2.Zero, 0, SpriteEffects.None)
+        {}
+        // Constructor without velocity and direction with mirroring.
+        public GameObject(Texture2D texture, bool centerAsOrigin, float scale, Vector2 position, SpriteEffects spriteEffect) : this(texture, centerAsOrigin, scale, position, Vector2.Zero, 0, spriteEffect)
+        {}
+        // Constructor without position, velocity and direction.
+        public GameObject(Texture2D texture, bool centerAsOrigin, float scale) : this(texture, centerAsOrigin, scale, Vector2.Zero, Vector2.Zero, 0, SpriteEffects.None)
+        {}
 
         /// <summary>
         /// A simple implementation of collision detection.
@@ -57,6 +70,11 @@ namespace FallingCatGame.Drawing
                     (int)_width,
                     (int)_height);
             }
+        }
+
+        public Texture2D Texture
+        {
+            set { _texture = value; }
         }
 
         public Vector2 Position
@@ -89,7 +107,7 @@ namespace FallingCatGame.Drawing
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _position, null, Color.White, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, _position, null, Color.White, 0f, _origin, _scale, _spriteEffect, 0f);
         }
     }
 }
