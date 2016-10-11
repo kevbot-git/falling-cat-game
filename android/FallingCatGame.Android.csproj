@@ -81,7 +81,7 @@
     <Compile Include="Test\Tests\TestObject.cs" />
     <Compile Include="Test\Tests\UpdatingTestObject.cs" />
     <Compile Include="Test\UpdatingTestRunner.cs" />
-    <Compile Include="Tools\Graph.cs" />
+    <Compile Include="Tools\MarkovChain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
