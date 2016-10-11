@@ -86,9 +86,10 @@ namespace FallingCatGame.Tools
         /// <summary>
         /// Helper method to add a Vertex to the graph.
         /// The last added Vertex will be the current state in the Markov Chain.
+        /// This method is set to private because a Vertex in a Markov Chain should not be isolated.
         /// </summary>
         /// <param name="v">The Vertex added to the graph.</param>
-        /// <returns></returns>
+        /// <returns>The Vertex added to the graph.</returns>
         private Vertex AddVertex(Vertex v)
         {
             _vertices.Add(v);
@@ -103,7 +104,7 @@ namespace FallingCatGame.Tools
         /// <param name="t0">Source.</param>
         /// <param name="t1">Destination.</param>
         /// <param name="p">Traversal probability.</param>
-        /// <returns></returns>
+        /// <returns>The Edge added to the graph.</returns>
         public Edge AddEdge(T t0, T t1, double p)
         {
             Vertex v0 = new Vertex(t0, this);
@@ -126,20 +127,20 @@ namespace FallingCatGame.Tools
         /// <param name="v0">The source vertex.</param>
         /// <param name="v1">The destination vertex.</param>
         /// <param name="p">The probability of traversal.</param>
-        /// <returns>The added edge.</returns>
+        /// <returns>The Edge added to the graph.</returns>
         public Edge AddEdge(Vertex v0, Vertex v1, double p)
         {
             Edge edge = new Edge(v0, v1, p);
 
             // Holds the returned reference to the source vertex connected edges.
             HashSet<Edge> edges;
-            // Holds the source vertex outdegree sum of traversal probabilities.
+            // Holds the source Vertex outdegree sum of traversal probabilities.
             double sum;
             double remainder;
             // Retrieves the vertex from the adjacency list and returns a reference to its edges.
             if (_adjacency.TryGetValue(v0, out edges))
             {
-                // Get the sum of edge traversal probabilities connected to the source vertex.
+                // Get the sum of edge traversal probabilities connected to the source Vertex.
                 // Ignore any self loops.
                 sum = 0;
                 foreach (Edge e in edges)
@@ -147,7 +148,7 @@ namespace FallingCatGame.Tools
                         sum += e.TraversalProbability;
                 sum += p;
 
-                // The new edge is added to the source vertex set of connected edges.
+                // The new Edge is added to the source Vertex set of connected edges.
                 if (sum == 1)
                 {
                     if (!edge.IsSelfLoop())
@@ -156,7 +157,7 @@ namespace FallingCatGame.Tools
                         // Traversal probabilities of out degree edges is equal to 1, remove self loop if exists.
                         RemoveSelfLoop(edges);
                     }
-                    // If the edge is a self loop that sums the total traversal probability to 1, add or update the self loop.
+                    // If the Edge is a self loop that sums the total traversal probability to 1, add or update the self loop.
                     else
                     {
                         // Remove existing self loop if present.
@@ -165,7 +166,7 @@ namespace FallingCatGame.Tools
                         edges.Add(edge);
                     }
                 }
-                // Sum of traversal probabilities is less than 1, add the edge and remainder as a self loop.
+                // Sum of traversal probabilities is less than 1, add the Edge and remainder as a self loop.
                 else if (sum < 1)
                 {
                     edges.Add(edge);
@@ -173,14 +174,14 @@ namespace FallingCatGame.Tools
                     // Recursive call to add the remaining probability of traversal as a self loop.
                     AddEdge(v0, v0, remainder);
                 }
-                // Sum of traversal probabilities is over 1, do not add the edge.
+                // Sum of traversal probabilities is over 1, do not add the Edge.
                 else
                     return null;
 
-                // Finally add the edge as a reference to the set of edges in the graph.
+                // Finally add the Edge as a reference to the set of edges in the graph.
                 _edges.Add(edge);
 
-                // Graph is directed so an edge is not added to the destination vertex.
+                // Graph is directed so an Edge is not added to the destination Vertex.
             }
 
             return edge;
@@ -212,10 +213,10 @@ namespace FallingCatGame.Tools
                 return false;
             else
             {
-                // Remove edge from graph.
+                // Remove Edge from graph.
                 _edges.Remove(e);
 
-                // Remove edge from vertex adjacency list.
+                // Remove Edge from Vertex adjacency list.
                 HashSet<Edge> edges;
                 Vertex[] vertices = e.EndVertices();
                 if (_adjacency.TryGetValue(vertices[0], out edges))
@@ -266,12 +267,12 @@ namespace FallingCatGame.Tools
 
         /// <summary>
         /// Inner class that implements a Vertex for the MarkovChainGraph.
-        /// Each Vertex must contain a reference to the outer class. The reason for this is in C# nested classes are like C++ nested classes
-        /// and therefore do not behave in the unique way that Java inner classes do.
+        /// In C# inner classes must contain references to outer classes if they want to access their values.
+        /// Each Vertex must contain a reference to the outer class.
         /// </summary>
         public class Vertex
         {
-            // The type contained in the vertex.
+            // The type contained in the Vertex.
             private T _t;
             // Each Vertex must contain a reference to the outer class.
             private MarkovChain<T> _outerGraph;
