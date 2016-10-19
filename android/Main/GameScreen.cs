@@ -16,6 +16,7 @@ namespace FallingCatGame.Main
         // Player objects.
         private PlayerObject _player;
         internal PlayerControl _playerControl;
+        private ScoreObject _score;
 
         public GameScreen(ContentManager content)
         {
@@ -41,13 +42,17 @@ namespace FallingCatGame.Main
         /// <param name="scale">The ScaleHelper containing the calculated scale factors, to be selected and applied to the objects.</param>
         private void LoadContent(ContentManager content, ScaleHelper scale)
         {
-            // Load the scrollers.
-            _buildingScroller = new BuildingScroller(content, scale.BuildingScale);
-            _cloudScroller = new CloudScroller(content, scale.LaneScale);
-
             // Load the player.
             _player = new PlayerObject(content.Load<Texture2D>("Cat"), scale.LaneScale);
             _playerControl = new PlayerControl(_player);
+            _score = new ScoreObject(content, scale.LaneScale * 2);
+
+            // Load the scrollers.
+            _buildingScroller = new BuildingScroller(content, scale.BuildingScale, _score);
+            _cloudScroller = new CloudScroller(content, scale.LaneScale);
+
+            // Load the obstacles.
+
         }
 
         public void Update(GameTime gameTime)
@@ -59,6 +64,9 @@ namespace FallingCatGame.Main
             // Update the player.
             _player.Update(gameTime);
             _playerControl.Update(gameTime);
+
+            // Update the obstacles.
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -69,6 +77,10 @@ namespace FallingCatGame.Main
 
             // Draw the player.
             _player.Draw(spriteBatch);
+            _score.Draw(spriteBatch);
+
+            // Draw the obstacles.
+
         }
     }
 }

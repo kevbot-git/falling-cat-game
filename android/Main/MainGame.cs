@@ -50,8 +50,8 @@ namespace FallingCatGame.Main
             // Set up tests that depend on XNA's Update() and Draw() methods.
             updatingTestRunner = new UpdatingTestRunner(Content);
 
-            // Set the inital game state to testing.
-            state = GameStates.Testing;
+            // Set the inital game state.
+            state = GameStates.Playing;
 
             gameScreen = new GameScreen(Content);
             menu = new MainMenu(Content);
@@ -118,7 +118,8 @@ namespace FallingCatGame.Main
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap,
+                null, null, null);
 
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 

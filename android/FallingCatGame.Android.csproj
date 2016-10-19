@@ -72,6 +72,7 @@
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Player\PlayerObject.cs" />
     <Compile Include="Player\PlayerControl.cs" />
+    <Compile Include="Player\ScoreObject.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\Assert.cs" />

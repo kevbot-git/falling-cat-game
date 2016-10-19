@@ -5,6 +5,7 @@ using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using FallingCatGame.Player;
 
 namespace FallingCatGame.Background
 {
@@ -27,8 +28,14 @@ namespace FallingCatGame.Background
         private LinkedList<GameObject> _leftBuildings;
         private LinkedList<GameObject> _rightBuildings;
 
-        public BuildingScroller(ContentManager content, float scale)
+        // Score reference.
+        private ScoreObject _score;
+
+        public BuildingScroller(ContentManager content, float scale, ScoreObject score)
         {
+            // The score is based on the number of buildings passed.
+            _score = score;
+
             // Drawing.
             LoadContent(content);
             _scale = scale;
@@ -36,7 +43,7 @@ namespace FallingCatGame.Background
             _leftBuildings = new LinkedList<GameObject>();
             _rightBuildings = new LinkedList<GameObject>();
 
-            _velocity = 1500;
+            _velocity = 500;
 
             _screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -127,6 +134,9 @@ namespace FallingCatGame.Background
                 stackBuilding.Position = new Vector2(_screenWidth - stackBuilding.Width, _rightFirst.Y + stackBuilding.Height);
                 _rightBuildings.AddFirst(stackBuilding);
                 _rightBuildings.RemoveLast();
+
+                // Increment the score.
+                _score.Score++;
             }
 
             foreach (GameObject building in _leftBuildings)

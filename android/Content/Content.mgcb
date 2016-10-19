@@ -61,6 +61,14 @@
 /processorParam:TextureFormat=Color
 /build:Cat.png
 
+#begin fipps.bmp
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:fipps.bmp
+
 #begin Building.png
 /importer:TextureImporter
 /processor:TextureProcessor
