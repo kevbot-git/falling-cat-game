@@ -7,7 +7,7 @@ namespace FallingCatGame.Test.Tests
     public abstract class UpdatingTestObject : IGameLogic
     {
         // The assert object to be used in UpdatingTestObject test classes.
-        protected Assert _assert = new Assert();
+        protected MonoAssert _assert = new MonoAssert();
         // The flag to let the Runner know if a test is finished for a test class.
         protected bool _isFinished = false;
 

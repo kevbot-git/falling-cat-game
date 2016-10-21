@@ -2,7 +2,7 @@
 
 namespace FallingCatGame
 {
-	public class Assert
+	public class MonoAssert
 	{
         // The tag in which all unit test results are found under.
         // This tag does not have to be a constant. Upon creation of a test class, a custom tag could be passed into the assert object.
@@ -14,7 +14,7 @@ namespace FallingCatGame
         private int _nSuccess = 0;
         private int _nFail = 0;
 
-        public Assert()
+        public MonoAssert()
 		{
 
 		}

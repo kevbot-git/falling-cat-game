@@ -75,7 +75,7 @@
     <Compile Include="Player\ScoreObject.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\Assert.cs" />
+    <Compile Include="Test\MonoAssert.cs" />
     <Compile Include="Test\TestRunner.cs" />
     <Compile Include="Test\Tests\BasicTest.cs" />
     <Compile Include="Test\Tests\ScrollTest.cs" />

@@ -77,7 +77,7 @@ namespace FallingCatGame.Tools
         /// </summary>
         /// <param name="t">The element to be passed into the Vertex.</param>
         /// <returns>The Vertex added to the graph.</returns>
-        private Vertex AddVertex(T t)
+        public Vertex AddVertex(T t)
         {
             Vertex v = new Vertex(t, this);
             return AddVertex(v);
@@ -176,7 +176,7 @@ namespace FallingCatGame.Tools
                 }
                 // Sum of traversal probabilities is over 1, do not add the Edge.
                 else
-                    return null;
+                    throw new ArgumentException("The source sum of probability traversals can not be higher than 1. Check the source path probabilities.");
 
                 // Finally add the Edge as a reference to the set of edges in the graph.
                 _edges.Add(edge);
