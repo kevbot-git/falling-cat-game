@@ -12,9 +12,11 @@ namespace FallingCatGame.Main
         // Background objects.
         private BuildingScroller _buildingScroller;
         private CloudScroller _cloudScroller;
-        private PlayerObject _player;
 
-        internal PlayerControl playerControl;
+        // Player objects.
+        private PlayerObject _player;
+        internal PlayerControl _playerControl;
+        private ScoreObject _score;
 
         public GameScreen(ContentManager content)
         {
@@ -40,28 +42,33 @@ namespace FallingCatGame.Main
         /// <param name="scale">The ScaleHelper containing the calculated scale factors, to be selected and applied to the objects.</param>
         private void LoadContent(ContentManager content, ScaleHelper scale)
         {
-            float screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            // Load the player.
+            _player = new PlayerObject(content.Load<Texture2D>("Cat"), scale.LaneScale);
+            _playerControl = new PlayerControl(_player);
+            _score = new ScoreObject(content, scale.LaneScale * 2);
 
             // Load the scrollers.
-            _buildingScroller = new BuildingScroller(content, scale.BuildingScale);
+            _buildingScroller = new BuildingScroller(content, scale.BuildingScale, _score);
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
 
             Texture2D cat = content.Load<Texture2D>("kitty");
             _player = new PlayerObject(cat, 1, 4, scale.LaneScale, new Vector2(screenWidth / 2, 20));
             _player.SetAnimation(_player.AddAnimation("falling", new AnimationClip(4.0f, 0, 1, 2, 3)));
 
-            playerControl = new PlayerControl(_player, screenWidth / 2 - _player.Width, screenWidth / 2 + _player.Width, screenWidth / 2);
         }
 
         public void Update(GameTime gameTime)
         {
-            playerControl.Update(gameTime);
-
             // Update the scrollers.
             _cloudScroller.Update(gameTime);
             _buildingScroller.Update(gameTime);
 
+            // Update the player.
             _player.Update(gameTime);
+            _playerControl.Update(gameTime);
+
+            // Update the obstacles.
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -69,7 +76,13 @@ namespace FallingCatGame.Main
             // Draw the scrollers.
             _cloudScroller.Draw(spriteBatch);
             _buildingScroller.Draw(spriteBatch);
+
+            // Draw the player.
             _player.Draw(spriteBatch);
+            _score.Draw(spriteBatch);
+
+            // Draw the obstacles.
+
         }
     }
 }

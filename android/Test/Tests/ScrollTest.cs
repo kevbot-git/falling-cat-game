@@ -36,7 +36,7 @@ namespace FallingCatGame.Test.Tests
             _buildingScale = scale.BuildingScale;
 
             // Create building scroller passing in it's relative scale.
-            _buildingScroller = new BuildingScroller(content, scale.BuildingScale);
+            _buildingScroller = new BuildingScroller(content, scale.BuildingScale, null);
         }
 
         public override void RunPreUpdateTests()

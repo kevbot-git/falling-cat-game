@@ -83,7 +83,6 @@ C:\Users\kamen\Source\Repos\falling-cat-game\android\obj\Debug\android\assets\Sy
 C:\Users\kamen\Source\Repos\falling-cat-game\android\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\kamen\Source\Repos\falling-cat-game\android\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\kamen\Source\Repos\falling-cat-game\android\obj\Debug\FallingCatGame.dll.mdb
-C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\FallingCatGame.dll.mdb
 C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\obj\Debug\FallingCatGame.Android.csprojResolveAssemblyReference.cache
 C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\obj\Debug\FallingCatGame.dll
 C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\obj\Debug\FallingCatGame.pdb
@@ -127,4 +126,5 @@ C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\obj\Debug\andro
 C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\obj\Debug\FallingCatGame.dll.mdb
-C:\Users\kamen\Documents\Nerdy\Projects\falling-cat-game\android\bin\Android\AnyCPU\Debug\FallingCatGame.dll.mdb
+C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\FallingCatGame.dll.mdb
+C:\Users\sebas\Source\Repos\falling-cat-game\android\bin\Android\AnyCPU\Debug\FallingCatGame.dll.mdb

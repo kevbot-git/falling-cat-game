@@ -5,6 +5,7 @@ using FallingCatGame.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using FallingCatGame.Player;
 
 namespace FallingCatGame.Background
 {
@@ -27,8 +28,14 @@ namespace FallingCatGame.Background
         private LinkedList<GameObject> _leftBuildings;
         private LinkedList<GameObject> _rightBuildings;
 
-        public BuildingScroller(ContentManager content, float scale)
+        // Score reference.
+        private ScoreObject _score;
+
+        public BuildingScroller(ContentManager content, float scale, ScoreObject score)
         {
+            // The score is based on the number of buildings passed.
+            _score = score;
+
             // Drawing.
             LoadContent(content);
             _scale = scale;
@@ -36,7 +43,7 @@ namespace FallingCatGame.Background
             _leftBuildings = new LinkedList<GameObject>();
             _rightBuildings = new LinkedList<GameObject>();
 
-            _velocity = 300;
+            _velocity = 500;
 
             _screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -46,9 +53,10 @@ namespace FallingCatGame.Background
             for (int i = 0; i < _nBuildings + 2; i++)
             {
                 // No position passed into constructor as position is later initialized.
-                GameObject building = new GameObject(_buildingTexture, _scale, Vector2.Zero, new Vector2(0, 1), _velocity);
-                _leftBuildings.AddLast(building);
-                _rightBuildings.AddLast(building);
+                GameObject leftBuilding = new GameObject(_buildingTexture, false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.None);
+                GameObject rightBuilding = new GameObject(_buildingTexture, false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.FlipHorizontally);
+                _leftBuildings.AddLast(leftBuilding);
+                _rightBuildings.AddLast(rightBuilding);
             }
 
             InitiatePositions();
@@ -99,11 +107,13 @@ namespace FallingCatGame.Background
         /// </summary>
         /// <param name="seed"></param>
         /// <returns></returns>
-        private GameObject GetRandomBuilding(Random seed)
+        private GameObject GetRandomBuilding(Random seed, bool flipped)
         {
             // Add possible textures to this array.
             Texture2D[] textures = new Texture2D[] { _buildingTexture };
-            return new GameObject(textures[seed.Next(0, textures.Length)], _scale, Vector2.Zero, new Vector2(0, 1), _velocity);
+            if (flipped)
+                return new GameObject(textures[seed.Next(0, textures.Length)], false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.FlipHorizontally);
+            return new GameObject(textures[seed.Next(0, textures.Length)], false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.None);
         }
 
         public void Update(GameTime gameTime)
@@ -112,7 +122,7 @@ namespace FallingCatGame.Background
 
             if (_leftLast.Y < -_buildingTexture.Height * _scale)
             {
-                GameObject stackBuilding = GetRandomBuilding(seed);
+                GameObject stackBuilding = GetRandomBuilding(seed, false);
                 stackBuilding.Position = new Vector2(0, _leftFirst.Y + stackBuilding.Height);
                 _leftBuildings.AddFirst(stackBuilding);
                 _leftBuildings.RemoveLast();
@@ -120,10 +130,13 @@ namespace FallingCatGame.Background
 
             if (_rightLast.Y < -_buildingTexture.Height * _scale)
             {
-                GameObject stackBuilding = GetRandomBuilding(seed);
+                GameObject stackBuilding = GetRandomBuilding(seed, true);
                 stackBuilding.Position = new Vector2(_screenWidth - stackBuilding.Width, _rightFirst.Y + stackBuilding.Height);
                 _rightBuildings.AddFirst(stackBuilding);
                 _rightBuildings.RemoveLast();
+
+                // Increment the score.
+                _score.Score++;
             }
 
             foreach (GameObject building in _leftBuildings)

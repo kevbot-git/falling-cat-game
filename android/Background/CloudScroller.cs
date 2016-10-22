@@ -53,9 +53,9 @@ namespace FallingCatGame.Background
 
 			for (int i = 0; i < nClouds; i++)
 			{
-				_firstLayer.Add(new GameObject(_cloudTexture, _scale, Vector2.Zero, new Vector2(1, 0), seed.Next(100, 200)));
-				_secondLayer.Add(new GameObject(_cloudTexture, _scale * 2, Vector2.Zero, new Vector2(1, 0), seed.Next(50, 100)));
-				_thirdLayer.Add(new GameObject(_cloudTexture, _scale * 3, Vector2.Zero, new Vector2(1, 0), seed.Next(25, 50)));
+				_firstLayer.Add(new GameObject(_cloudTexture, false, _scale, Vector2.Zero, new Vector2(1, 0), seed.Next(100, 200), SpriteEffects.None));
+				_secondLayer.Add(new GameObject(_cloudTexture, false, _scale * 2, Vector2.Zero, new Vector2(1, 0), seed.Next(50, 100), SpriteEffects.None));
+				_thirdLayer.Add(new GameObject(_cloudTexture, false, _scale * 3, Vector2.Zero, new Vector2(1, 0), seed.Next(25, 50), SpriteEffects.None));
 			}
 
 			_clouds.Add(_thirdLayer);
