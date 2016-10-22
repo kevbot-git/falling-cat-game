@@ -20,7 +20,7 @@ namespace FallingCatGame.Player
 
         public override void Update(GameTime gameTime)
         {
-
+            base.Update(gameTime);
         }
     }
 }

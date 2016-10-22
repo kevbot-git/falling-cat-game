@@ -37,18 +37,6 @@
 /processorParam:TextureFormat=Color
 /build:Menu_Long_Button.png
 
-#begin Building.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Building.png
-
 #begin Cloud.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -60,6 +48,26 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Cloud.png
+
+#begin fipps.bmp
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:fipps.bmp
+
+#begin Building.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Building.png
 
 #begin kitty.png
 /importer:TextureImporter
