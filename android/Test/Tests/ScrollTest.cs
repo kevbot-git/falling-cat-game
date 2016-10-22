@@ -29,10 +29,10 @@ namespace FallingCatGame.Test.Tests
         {
             // Select the two dominant lane textures to scale by. Game elements will scale in proportion to the following.
             _buildingTexture = content.Load<Texture2D>("Building");
-            Texture2D lane = content.Load<Texture2D>("Cat");
+            Texture2D lane = content.Load<Texture2D>("kitty");
 
             // Store the calculated scale factors.
-            ScaleHelper scale = new ScaleHelper(_buildingTexture.Width, lane.Width);
+            ScaleHelper scale = new ScaleHelper(_buildingTexture.Width, lane.Width / 4); // Changed for new image
             _buildingScale = scale.BuildingScale;
 
             // Create building scroller passing in it's relative scale.

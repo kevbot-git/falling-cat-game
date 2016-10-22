@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="Background\BuildingScroller.cs" />
     <Compile Include="Background\CloudScroller.cs" />
+    <Compile Include="Drawing\AnimatedGameObject.cs" />
+    <Compile Include="Drawing\AnimationClip.cs" />
     <Compile Include="Drawing\GameObject.cs" />
     <Compile Include="Drawing\ScaleHelper.cs" />
     <Compile Include="Main\MainActivity.cs" />

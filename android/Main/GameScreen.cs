@@ -26,10 +26,10 @@ namespace FallingCatGame.Main
         {
             // Select the two dominant lane textures to scale by. Game elements will scale in proportion to the following.
             Texture2D building = content.Load<Texture2D>("Building");
-            Texture2D lane = content.Load<Texture2D>("Cat");
+            Texture2D lane = content.Load<Texture2D>("kitty");
 
             // Return the calculated scale factors.
-            return new ScaleHelper(building.Width, lane.Width);
+            return new ScaleHelper(building.Width, lane.Width / 4);
         }
 
         /// <summary>
@@ -42,13 +42,13 @@ namespace FallingCatGame.Main
         {
             float screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
-            Texture2D cat = content.Load<Texture2D>("Cat");
-
             // Load the scrollers.
             _buildingScroller = new BuildingScroller(content, scale.BuildingScale);
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
 
-            _player = new PlayerObject(cat, scale.LaneScale, new Vector2(screenWidth / 2, 20));
+            Texture2D cat = content.Load<Texture2D>("kitty");
+            _player = new PlayerObject(cat, 1, 4, scale.LaneScale, new Vector2(screenWidth / 2, 20));
+            _player.SetAnimation(_player.AddAnimation("falling", new AnimationClip(4.0f, 0, 1, 2, 3)));
 
             playerControl = new PlayerControl(_player, screenWidth / 2 - _player.Width, screenWidth / 2 + _player.Width, screenWidth / 2);
         }

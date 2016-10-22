@@ -12,15 +12,15 @@ namespace FallingCatGame.Drawing
     public class GameObject
     {
         // Standard 2D game object variables.
-        private Texture2D _texture;
-        private Vector2 _position;
-        private Vector2 _direction;
-        private float _velocity;
+        protected Texture2D _texture;
+        protected Vector2 _position;
+        protected Vector2 _direction;
+        protected float _velocity;
 
         // Scale properties.
-        private float _width;
-        private float _height;
-        private float _scale;
+        protected float _width;
+        protected float _height;
+        protected float _scale;
 
         public GameObject(Texture2D texture, float scale, Vector2 position, Vector2 direction, float velocity)
         {
@@ -47,7 +47,7 @@ namespace FallingCatGame.Drawing
         /// Used as a default if an advanced method of collision does not need to be used.
         /// Creates and returns this objects hit box to be compared outside this class with anothers.
         /// </summary>
-        public Rectangle HitBox
+        public virtual Rectangle HitBox
         {
             get
             {
@@ -87,7 +87,7 @@ namespace FallingCatGame.Drawing
             get { return (int)_height; }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, _position, null, Color.White, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
         }
