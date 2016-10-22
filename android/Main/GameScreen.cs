@@ -43,18 +43,15 @@ namespace FallingCatGame.Main
         private void LoadContent(ContentManager content, ScaleHelper scale)
         {
             // Load the player.
-            _player = new PlayerObject(content.Load<Texture2D>("Cat"), scale.LaneScale);
+            _player = new PlayerObject(content.Load<Texture2D>("kitty"), 1, 4, scale.LaneScale);
+            _player.SetAnimation(_player.AddAnimation("falling", new AnimationClip(4.0f, 0, 1, 2, 3)));
+
             _playerControl = new PlayerControl(_player);
             _score = new ScoreObject(content, scale.LaneScale * 2);
 
             // Load the scrollers.
             _buildingScroller = new BuildingScroller(content, scale.BuildingScale, _score);
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
-
-            Texture2D cat = content.Load<Texture2D>("kitty");
-            _player = new PlayerObject(cat, 1, 4, scale.LaneScale, new Vector2(screenWidth / 2, 20));
-            _player.SetAnimation(_player.AddAnimation("falling", new AnimationClip(4.0f, 0, 1, 2, 3)));
-
         }
 
         public void Update(GameTime gameTime)

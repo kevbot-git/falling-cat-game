@@ -18,8 +18,8 @@ namespace FallingCatGame.Drawing
         private int _frameColumns;
         private int _frameRows;
 
-        public AnimatedGameObject(Texture2D texture, int rows, int columns, float scale, Vector2 position, Vector2 direction, float velocity)
-            : base(texture, scale, position, direction, velocity)
+        public AnimatedGameObject(Texture2D texture, bool centerAsOrigin, int rows, int columns, float scale, Vector2 position, Vector2 direction, float velocity, SpriteEffects spriteEffects)
+            : base(texture, centerAsOrigin, scale, position, direction, velocity, spriteEffects)
         {
             // Divide w & h by the number of times a texture is split into frames
             _width /= (_frameColumns = columns);
