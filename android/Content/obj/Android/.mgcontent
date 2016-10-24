@@ -4,11 +4,13 @@
   <Platform>Android</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/kamen/Documents/Nerdy/Projects/falling-cat-game/android/Content/Menu_Short_Button.png</File>
-    <File>C:/Users/kamen/Documents/Nerdy/Projects/falling-cat-game/android/Content/Menu_Long_Button.png</File>
-    <File>C:/Users/kamen/Documents/Nerdy/Projects/falling-cat-game/android/Content/Cloud.png</File>
-    <File>C:/Users/kamen/Documents/Nerdy/Projects/falling-cat-game/android/Content/fipps.bmp</File>
-    <File>C:/Users/kamen/Documents/Nerdy/Projects/falling-cat-game/android/Content/Building.png</File>
-    <File>C:/Users/kamen/Documents/Nerdy/Projects/falling-cat-game/android/Content/kitty.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Menu_Short_Button.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Menu_Long_Button.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Cloud.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/fipps.bmp</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Building.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/kitty.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/box.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/coin2.png</File>
   </SourceFiles>
 </SourceFileCollection>

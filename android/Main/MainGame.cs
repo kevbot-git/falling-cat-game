@@ -51,9 +51,9 @@ namespace FallingCatGame.Main
             updatingTestRunner = new UpdatingTestRunner(Content);
 
             // Set the inital game state.
-            state = GameStates.Playing;
+			state = GameStates.MainMenu;
 
-            gameScreen = new GameScreen(Content);
+            gameScreen = new GameScreen(Content, state);
             menu = new MainMenu(Content);
 
             base.Initialize();

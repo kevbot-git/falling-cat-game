@@ -18,10 +18,13 @@ namespace FallingCatGame.Main
         internal PlayerControl _playerControl;
         private ScoreObject _score;
 
-        public GameScreen(ContentManager content)
+		// Object objects.. \_(ツ)_/¯
+		private WaveManager _waveManager;
+
+        public GameScreen(ContentManager content, GameStates state)
         {
             // Load the content by passing in the ContentManager and finding the dominant scale factors.
-            LoadContent(content, Scale(content));
+            LoadContent(content, Scale(content), state);
         }
 
         private ScaleHelper Scale(ContentManager content)
@@ -40,7 +43,7 @@ namespace FallingCatGame.Main
         /// </summary>
         /// <param name="content">The ContentManager to be passed into an object to load its relevant textures.</param>
         /// <param name="scale">The ScaleHelper containing the calculated scale factors, to be selected and applied to the objects.</param>
-        private void LoadContent(ContentManager content, ScaleHelper scale)
+        private void LoadContent(ContentManager content, ScaleHelper scale, GameStates state)
         {
             // Load the player.
             _player = new PlayerObject(content.Load<Texture2D>("kitty"), 1, 4, scale.LaneScale);
@@ -52,6 +55,9 @@ namespace FallingCatGame.Main
             // Load the scrollers.
             _buildingScroller = new BuildingScroller(content, scale.BuildingScale, _score);
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
+
+			// Load the obstacles.
+			_waveManager = new WaveManager(content, _player, _playerControl, state);
         }
 
         public void Update(GameTime gameTime)
@@ -65,7 +71,7 @@ namespace FallingCatGame.Main
             _playerControl.Update(gameTime);
 
             // Update the obstacles.
-
+			_waveManager.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -79,7 +85,7 @@ namespace FallingCatGame.Main
             _score.Draw(spriteBatch);
 
             // Draw the obstacles.
-
+			_waveManager.Draw(spriteBatch);
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FallingCatGame.Player
 {
-    class PlayerControl
+    public class PlayerControl
     {
         private static readonly float ACCEL_THRESH = 3.0f;
         private static readonly float ANIM_TIME = 1f;
@@ -11,9 +11,9 @@ namespace FallingCatGame.Player
         internal Vector3 accel;
 
         private PlayerObject _player;
-        private float _left;
-        private float _right;
-        private float _center;
+        public float _left;
+        public float _right;
+        public float _center;
 
         public PlayerControl(PlayerObject player)
         {

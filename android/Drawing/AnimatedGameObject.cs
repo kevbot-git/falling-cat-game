@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FallingCatGame.Drawing
 {
-    class AnimatedGameObject: GameObject
+    public class AnimatedGameObject: GameObject
     {
         private static string DEFAULT_ANIM = "default";
         private static float DEFAULT_FPS = 4.0f;

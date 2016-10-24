@@ -6,7 +6,7 @@ using Android.Util;
 
 namespace FallingCatGame.Player
 {
-    class PlayerObject : AnimatedGameObject, IGameLogic
+    public class PlayerObject : AnimatedGameObject, IGameLogic
     {
         public PlayerObject(Texture2D texture, int rows, int columns, float scale)
             : base(texture, true, rows, columns, scale, Vector2.Zero, Vector2.Zero, 0f, SpriteEffects.None)

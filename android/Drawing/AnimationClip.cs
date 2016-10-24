@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FallingCatGame.Drawing
 {
-    class AnimationClip
+    public class AnimationClip
     {
         private LinkedList<int> _indices;
         private LinkedListNode<int> _currentIndex;
