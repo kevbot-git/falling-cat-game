@@ -135,8 +135,12 @@ namespace FallingCatGame.Background
                 _rightBuildings.AddFirst(stackBuilding);
                 _rightBuildings.RemoveLast();
 
-                // Increment the score.
-                _score.Score++;
+                // Temp score fix.
+                if ((_rightLast.Y < -_buildingTexture.Height * _scale) && (_rightLast.Y > (-_buildingTexture.Height * _scale) - 10))
+                {
+                    // Increment the score.
+                    _score.Score++;
+                }
             }
 
             foreach (GameObject building in _leftBuildings)

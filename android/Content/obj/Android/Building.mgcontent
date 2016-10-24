@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/Users/farleyschaefer/falling-cat-game/android/Content/Building.png</SourceFile>
-  <SourceTime>2016-10-24T20:04:02+13:00</SourceTime>
-  <DestFile>/Users/farleyschaefer/falling-cat-game/android/Content/bin/Android/Building.xnb</DestFile>
-  <DestTime>2016-10-24T20:04:38+13:00</DestTime>
+  <SourceFile>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Building.png</SourceFile>
+  <SourceTime>2016-10-24T21:38:59.4406119+13:00</SourceTime>
+  <DestFile>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/bin/Android/Building.xnb</DestFile>
+  <DestTime>2016-10-24T21:39:45.7213044+13:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2016-03-30T19:36:22+13:00</ImporterTime>
+  <ImporterTime>2016-03-30T19:36:08+13:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2016-03-30T19:36:22+13:00</ProcessorTime>
+  <ProcessorTime>2016-03-30T19:36:08+13:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
