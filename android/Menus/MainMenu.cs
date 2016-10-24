@@ -28,7 +28,7 @@ namespace FallingCatGame.Menus
 
         public void loadTextures()
         {
-            single = new Button(content.Load<Texture2D>("Menu_Long_Button"), GameStates.Playing);
+            single = new Button(content.Load<Texture2D>("Menu_Long_Button_Play"), GameStates.Playing);
             multi = new Button(content.Load<Texture2D>("Menu_Long_Button"), GameStates.MainMenu);
             settings = new Button(content.Load<Texture2D>("Menu_Short_Button"), GameStates.MainMenu);
             cat = new Button(content.Load<Texture2D>("Menu_Short_Button"), GameStates.MainMenu);
