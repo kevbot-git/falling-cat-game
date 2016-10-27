@@ -29,9 +29,7 @@ namespace FallingCatGame
 
 		private float _screenHeight;
 
-		private GameStates _state;
-
-		public WaveManager(ContentManager content, PlayerObject cat, PlayerControl control, GameStates state)
+		public WaveManager(ContentManager content, PlayerObject cat, PlayerControl control)
 		{
 			_content = content;
 			_cat = cat;
@@ -43,11 +41,9 @@ namespace FallingCatGame
 
 			_screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-			_state = state;
-
 			// Instantiate the wave list with its first wave.
 			waves = new List<Wave>{
-				new Wave(cat, createWave(), state),
+				new Wave(cat, createWave()),
 			};
 		}
 
@@ -96,7 +92,7 @@ namespace FallingCatGame
 			timer -= elapsed;
 			if (timer < 0)
 			{
-				waves.Add(new Wave(_cat, createWave(), _state));
+				waves.Add(new Wave(_cat, createWave()));
 				timer = TIMER;
 			}
 

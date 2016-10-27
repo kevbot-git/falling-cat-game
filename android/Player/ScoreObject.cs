@@ -14,9 +14,13 @@ namespace FallingCatGame.Player
     /// </summary>
     public class ScoreObject
     {
+        public const string HighScore = "HighScore.txt";
+
         private int _score;
+        private int _highScore;
         private float _scale;
-        private Vector2 _position;
+        private Vector2 _scorePosition;
+        private Vector2 _highScorePosition;
         private SpriteFont _font;
 
         public ScoreObject(ContentManager content, float scale)
@@ -25,7 +29,12 @@ namespace FallingCatGame.Player
             _scale = scale;
 
             Texture2D buildingTexture = content.Load<Texture2D>("Building");
-            _position = new Vector2(buildingTexture.Width * (scale / 2) + 10, 0);
+            // + 10 is for position padding.
+            _highScorePosition = new Vector2((buildingTexture.Width * (scale / 2)) + 10, 0);
+            // Get height of font.
+            Vector2 fontSize = _font.MeasureString("S");
+            // + 10 is for position padding.
+            _scorePosition = new Vector2((buildingTexture.Width * (scale / 2)) + 10, fontSize.Y * 2 + 10);
         }
 
         public int Score
@@ -36,7 +45,8 @@ namespace FallingCatGame.Player
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(_font, "Score: " + _score, _position, Color.Black, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(_font, "High Score: " + _highScore, _highScorePosition, Color.Black, 0f, Vector2.Zero, _scale / 2, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(_font, "Score: " + _score, _scorePosition, Color.Black, 0f, Vector2.Zero, _scale / 2, SpriteEffects.None, 0f);
         }
     }
 }

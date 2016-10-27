@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Menu_Short_Button.png</SourceFile>
-  <SourceTime>2016-10-24T21:38:59.4562383+13:00</SourceTime>
+  <SourceTime>2016-10-27T13:37:21.9139033+13:00</SourceTime>
   <DestFile>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/bin/Android/Menu_Short_Button.xnb</DestFile>
-  <DestTime>2016-10-24T21:39:45.6205359+13:00</DestTime>
+  <DestTime>2016-10-27T13:50:26.5086207+13:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T19:36:08+13:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

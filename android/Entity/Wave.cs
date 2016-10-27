@@ -16,13 +16,10 @@ namespace FallingCatGame
 		// Each wave is passed the main player object to check for collisions.
 		private PlayerObject _cat;
 
-		private GameStates _state;
-
-		public Wave(PlayerObject cat, List<GameObject> entities, GameStates state)
+		public Wave(PlayerObject cat, List<GameObject> entities)
 		{
 			_cat = cat;
 			_entities = entities;
-			_state = state;
 		}
 
 		public void Update(GameTime gameTime)
@@ -31,8 +28,7 @@ namespace FallingCatGame
 			{
 				if (_cat.HitBox.Intersects(entity.HitBox))
 				{
-					_state = GameStates.MainMenu;
-
+                    _cat.Hit = true;
 					_entities.Remove(entity);
 					break;
 				}

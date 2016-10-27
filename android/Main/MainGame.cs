@@ -53,7 +53,7 @@ namespace FallingCatGame.Main
             // Set the inital game state.
 			state = GameStates.MainMenu;
 
-            gameScreen = new GameScreen(Content, state);
+            gameScreen = new GameScreen(Content);
             menu = new MainMenu(Content);
 
             base.Initialize();
@@ -106,6 +106,11 @@ namespace FallingCatGame.Main
                     break;
                 case GameStates.Playing:
                     gameScreen.Update(gameTime);
+                    if (gameScreen.Player.Hit)
+                    {
+                        gameScreen = new GameScreen(Content);
+                        state = GameStates.MainMenu;
+                    }
                     break;
             }
 
