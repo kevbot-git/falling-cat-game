@@ -77,6 +77,10 @@ namespace FallingCatGame.Main
 
             // Update the obstacles.
 			_waveManager.Update(gameTime);
+
+            // Save the score.
+            if (_player.Hit)
+                _score.SaveHighScore();
         }
 
         public void Draw(SpriteBatch spriteBatch)

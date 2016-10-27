@@ -39,5 +39,6 @@ C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\android\assets\Sy
 C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
+C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\FallingCatGame.Android.csprojResolveAssemblyReference.cache
 C:\Users\sebas\Source\Repos\falling-cat-game\android\obj\Debug\FallingCatGame.dll.mdb
 C:\Users\sebas\Source\Repos\falling-cat-game\android\bin\Android\AnyCPU\Debug\FallingCatGame.dll.mdb

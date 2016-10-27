@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
+using System.IO.IsolatedStorage;
 
 namespace FallingCatGame.Player
 {
@@ -35,12 +37,63 @@ namespace FallingCatGame.Player
             Vector2 fontSize = _font.MeasureString("S");
             // + 10 is for position padding.
             _scorePosition = new Vector2((buildingTexture.Width * (scale / 2)) + 10, fontSize.Y * 2 + 10);
+
+            // Load high score.
+            LoadHighScore();
         }
 
         public int Score
         {
             get { return _score; }
             set { _score = value; }
+        }
+
+        public void SaveHighScore()
+        {
+            IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+            IsolatedStorageFileStream fileStream = null;
+
+            if (_highScore < _score)
+            {
+                try
+                {
+                    fileStream = storage.OpenFile(HighScore, FileMode.Create, FileAccess.Write);
+                }
+                catch (IsolatedStorageException ex)
+                { }
+
+                if (fileStream != null)
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(fileStream))
+                    {
+                        streamWriter.WriteLine(Score);
+                    }
+                }
+            }
+
+        }
+
+        public void LoadHighScore()
+        {
+            IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+            IsolatedStorageFileStream fileStream = null;
+
+            try
+            {
+                fileStream = storage.OpenFile(HighScore, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            }
+            catch (IsolatedStorageException ex)
+            { }
+
+            if (fileStream != null)
+            {
+                using (StreamReader streamReader = new StreamReader(fileStream))
+                {
+                    string line;
+                    if ((line = streamReader.ReadLine()) != null)
+                        _highScore = int.Parse(line);
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
