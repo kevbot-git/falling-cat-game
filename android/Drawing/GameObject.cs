@@ -113,5 +113,11 @@ namespace FallingCatGame.Drawing
 		public virtual void action()
 		{
 		}
+
+        // Returns a copy of the object instead of a reference.
+        public GameObject ShallowCopy()
+        {
+            return (GameObject)MemberwiseClone();
+        }
     }
 }

@@ -11,32 +11,42 @@ namespace FallingCatGame
 {
 	public class Wave : IGameLogic
 	{
-		private List<GameObject> _entities;
+        // Changes (seba-git) 28/10/16:
+        //
+        // Removed Visible() method as replaced by Peek()
+        // using Queue. See WaveManager.
+
+        private List<GameObject> _entities;
 
 		// Each wave is passed the main player object to check for collisions.
 		private PlayerObject _cat;
 
 		// Hold a reference to the slowest object to tell when a wave has 
 		// travelled beyond the bounds of the game camera.
-		private GameObject slowest;
+		private GameObject _slowest;
 
 		public Wave(PlayerObject cat, List<GameObject> entities)
 		{
 			_cat = cat;
 			_entities = entities;
-			slowest = entities[0];
+			_slowest = entities[0];
 		}
+
+        public GameObject Slowest
+        {
+            get { return _slowest; }
+        }
 
 		public void Update(GameTime gameTime)
 		{
 			foreach (GameObject entity in _entities)
 			{
-				if (entity.Position.Y > slowest.Position.Y)
-					slowest = entity;
+				if (entity.Position.Y > _slowest.Position.Y)
+					_slowest = entity;
 
 				if (entity.HitBox.Intersects(_cat.HitBox))
-					entity.action();
-
+                    entity.action();
+					
 				entity.Position -= new Vector2(0, 1) * entity.Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			}
 		}
@@ -47,11 +57,6 @@ namespace FallingCatGame
 			{
 				entity.Draw(spriteBatch);
 			}
-		}
-
-		public bool Visible()
-		{
-			return (slowest.Position.Y >= -slowest.Height);
 		}
 	}
 }
