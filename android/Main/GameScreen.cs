@@ -62,7 +62,7 @@ namespace FallingCatGame.Main
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
 
 			// Load the obstacles.
-			_waveManager = new WaveManager(content, _player, _playerControl);
+			_waveManager = new WaveManager(content, _player, _playerControl, _score);
         }
 
         public void Update(GameTime gameTime)

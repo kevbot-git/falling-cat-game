@@ -87,6 +87,8 @@
     <Compile Include="Tools\MarkovChain.cs" />
     <Compile Include="Entity\Wave.cs" />
     <Compile Include="Entity\WaveManager.cs" />
+    <Compile Include="Entity\Coin.cs" />
+    <Compile Include="Entity\Box.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

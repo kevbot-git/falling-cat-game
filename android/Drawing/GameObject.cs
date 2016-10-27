@@ -109,5 +109,9 @@ namespace FallingCatGame.Drawing
         {
             spriteBatch.Draw(_texture, _position, null, Color.White, 0f, _origin, _scale, _spriteEffect, 0f);
         }
+
+		public virtual void action()
+		{
+		}
     }
 }

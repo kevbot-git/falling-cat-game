@@ -28,12 +28,12 @@ namespace FallingCatGame.Menus
 
         public void loadTextures()
         {
-            single = new Button(content.Load<Texture2D>("Menu_Long_Button_Play"), GameStates.Playing);
-            multi = new Button(content.Load<Texture2D>("Menu_Long_Button"), GameStates.MainMenu);
-            settings = new Button(content.Load<Texture2D>("Menu_Short_Button"), GameStates.MainMenu);
-            cat = new Button(content.Load<Texture2D>("Menu_Short_Button"), GameStates.MainMenu);
-            level = new Button(content.Load<Texture2D>("Menu_Short_Button"), GameStates.MainMenu);
-            highscores = new Button(content.Load<Texture2D>("Menu_Short_Button"), GameStates.MainMenu);
+            single = new Button(content.Load<Texture2D>("play"), GameStates.Playing);
+            multi = new Button(content.Load<Texture2D>("multi"), GameStates.MainMenu);
+            settings = new Button(content.Load<Texture2D>("settings"), GameStates.MainMenu);
+            cat = new Button(content.Load<Texture2D>("character"), GameStates.MainMenu);
+            level = new Button(content.Load<Texture2D>("level"), GameStates.MainMenu);
+            highscores = new Button(content.Load<Texture2D>("highscores"), GameStates.MainMenu);
 
             this.buttons = new Button[] { single, multi, settings, cat, level, highscores };
         }

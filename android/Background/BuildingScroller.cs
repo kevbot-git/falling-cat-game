@@ -17,7 +17,8 @@ namespace FallingCatGame.Background
         // Building properties.
         private Texture2D _buildingTexture;
         private float _scale;
-        private float _velocity;
+
+		public const float OBJECT_VELOCITY = 500;
 
         // Scroller properties.
         private int _nBuildings;
@@ -43,8 +44,6 @@ namespace FallingCatGame.Background
             _leftBuildings = new LinkedList<GameObject>();
             _rightBuildings = new LinkedList<GameObject>();
 
-            _velocity = 500;
-
             _screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
@@ -53,8 +52,8 @@ namespace FallingCatGame.Background
             for (int i = 0; i < _nBuildings + 2; i++)
             {
                 // No position passed into constructor as position is later initialized.
-                GameObject leftBuilding = new GameObject(_buildingTexture, false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.None);
-                GameObject rightBuilding = new GameObject(_buildingTexture, false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.FlipHorizontally);
+                GameObject leftBuilding = new GameObject(_buildingTexture, false, _scale, Vector2.Zero, new Vector2(0, 1), OBJECT_VELOCITY, SpriteEffects.None);
+                GameObject rightBuilding = new GameObject(_buildingTexture, false, _scale, Vector2.Zero, new Vector2(0, 1), OBJECT_VELOCITY, SpriteEffects.FlipHorizontally);
                 _leftBuildings.AddLast(leftBuilding);
                 _rightBuildings.AddLast(rightBuilding);
             }
@@ -112,8 +111,8 @@ namespace FallingCatGame.Background
             // Add possible textures to this array.
             Texture2D[] textures = new Texture2D[] { _buildingTexture };
             if (flipped)
-                return new GameObject(textures[seed.Next(0, textures.Length)], false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.FlipHorizontally);
-            return new GameObject(textures[seed.Next(0, textures.Length)], false, _scale, Vector2.Zero, new Vector2(0, 1), _velocity, SpriteEffects.None);
+                return new GameObject(textures[seed.Next(0, textures.Length)], false, _scale, Vector2.Zero, new Vector2(0, 1), OBJECT_VELOCITY, SpriteEffects.FlipHorizontally);
+            return new GameObject(textures[seed.Next(0, textures.Length)], false, _scale, Vector2.Zero, new Vector2(0, 1), OBJECT_VELOCITY, SpriteEffects.None);
         }
 
         public void Update(GameTime gameTime)

@@ -16,22 +16,26 @@ namespace FallingCatGame
 		// Each wave is passed the main player object to check for collisions.
 		private PlayerObject _cat;
 
+		// Hold a reference to the slowest object to tell when a wave has 
+		// travelled beyond the bounds of the game camera.
+		private GameObject slowest;
+
 		public Wave(PlayerObject cat, List<GameObject> entities)
 		{
 			_cat = cat;
 			_entities = entities;
+			slowest = entities[0];
 		}
 
 		public void Update(GameTime gameTime)
 		{
 			foreach (GameObject entity in _entities)
 			{
-				if (_cat.HitBox.Intersects(entity.HitBox))
-				{
-                    _cat.Hit = true;
-					_entities.Remove(entity);
-					break;
-				}
+				if (entity.Position.Y > slowest.Position.Y)
+					slowest = entity;
+
+				if (entity.HitBox.Intersects(_cat.HitBox))
+					entity.action();
 
 				entity.Position -= new Vector2(0, 1) * entity.Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			}
@@ -45,11 +49,9 @@ namespace FallingCatGame
 			}
 		}
 
-		// TODO(sno6): Fix this so waves are removed when they go out of visibility.
 		public bool Visible()
 		{
-			// return _entities[0].Position.Y >= -_cat.Height;
-			return true;
+			return (slowest.Position.Y >= -slowest.Height);
 		}
 	}
 }

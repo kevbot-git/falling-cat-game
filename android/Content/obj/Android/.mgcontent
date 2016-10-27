@@ -4,14 +4,20 @@
   <Platform>Android</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Menu_Short_Button.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Menu_Long_Button.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Cloud.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/fipps.bmp</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Building.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/kitty.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/box.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/coin2.png</File>
-    <File>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Menu_Long_Button_Play.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Menu_Short_Button.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Menu_Long_Button.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Cloud.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/fipps.bmp</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Building.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/kitty.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/box.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/coin2.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/Menu_Long_Button_Play.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/multi.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/play.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/settings.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/highscores.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/level.png</File>
+    <File>/Users/farleyschaefer/falling-cat-game/android/Content/character.png</File>
   </SourceFiles>
 </SourceFileCollection>
