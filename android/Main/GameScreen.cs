@@ -21,10 +21,15 @@ namespace FallingCatGame.Main
 		// Object objects.. \_(ツ)_/¯
 		private WaveManager _waveManager;
 
-        public GameScreen(ContentManager content, GameStates state)
+        public GameScreen(ContentManager content)
         {
             // Load the content by passing in the ContentManager and finding the dominant scale factors.
-            LoadContent(content, Scale(content), state);
+            LoadContent(content, Scale(content));
+        }
+
+        public PlayerObject Player
+        {
+            get { return _player; }
         }
 
         private ScaleHelper Scale(ContentManager content)
@@ -43,7 +48,7 @@ namespace FallingCatGame.Main
         /// </summary>
         /// <param name="content">The ContentManager to be passed into an object to load its relevant textures.</param>
         /// <param name="scale">The ScaleHelper containing the calculated scale factors, to be selected and applied to the objects.</param>
-        private void LoadContent(ContentManager content, ScaleHelper scale, GameStates state)
+        private void LoadContent(ContentManager content, ScaleHelper scale)
         {
             // Load the player.
             _player = new PlayerObject(content.Load<Texture2D>("kitty"), 1, 4, scale.LaneScale);
@@ -57,7 +62,7 @@ namespace FallingCatGame.Main
             _cloudScroller = new CloudScroller(content, scale.LaneScale);
 
 			// Load the obstacles.
-			_waveManager = new WaveManager(content, _player, _playerControl, state);
+			_waveManager = new WaveManager(content, _player, _playerControl);
         }
 
         public void Update(GameTime gameTime)
@@ -72,6 +77,10 @@ namespace FallingCatGame.Main
 
             // Update the obstacles.
 			_waveManager.Update(gameTime);
+
+            // Save the score.
+            if (_player.Hit)
+                _score.SaveHighScore();
         }
 
         public void Draw(SpriteBatch spriteBatch)

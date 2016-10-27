@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/Cloud.png</SourceFile>
-  <SourceTime>2016-10-24T21:38:59.4406119+13:00</SourceTime>
+  <SourceTime>2016-10-27T13:37:21.8982886+13:00</SourceTime>
   <DestFile>C:/Users/sebas/Source/Repos/falling-cat-game/android/Content/bin/Android/Cloud.xnb</DestFile>
-  <DestTime>2016-10-24T21:39:45.6517863+13:00</DestTime>
+  <DestTime>2016-10-27T13:50:26.5554933+13:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T19:36:08+13:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
